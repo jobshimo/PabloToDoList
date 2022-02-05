@@ -1,0 +1,42 @@
+<div [class.div-prSmall]="!open" [class.div-prLarge]="open" class="">
+
+
+    <button (click)="openClose()" [class.button-arrowUp]="!open" [class.button-arrowDown]="open" class="btn  main-button" type="button">
+
+      <svg-icon src="../../../assets/icons/caret-down-solid.svg" [svgStyle]="{ 'width.px':21 }"></svg-icon>
+</button>
+
+</div>
+
+
+<div *ngIf="!open" class="div-footer">
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn  button-folder" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Carpeta...
+</button>
+    <svg-icon class="button-star" src="../../../assets/icons/star-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
+    <svg-icon class="button-info" src="../../../assets/icons/info-solid.svg" [svgStyle]="{ 'width.px':7 }"></svg-icon>
+    <svg-icon class="button-clock" src="../../../assets/icons/clock-regular.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

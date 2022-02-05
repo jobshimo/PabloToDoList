@@ -1,0 +1,53 @@
+.div-prSmall {
+    width: 100%;
+    height: calc(100vh - 164px);
+    border-bottom: dotted
+}
+
+.div-prLarge {
+    width: 100%;
+    height: calc(100vh - 64px);
+}
+
+.div-footer {
+    height: 100px;
+}
+
+.button-arrowUp {
+    position: absolute;
+    right: 5px;
+    bottom: 100px;
+}
+
+.button-arrowDown {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+}
+
+.button-folder {
+    position: relative;
+    top: 32px;
+    right: -2px;
+}
+
+.button-star {
+    width: 20px;
+    position: relative;
+    left: 140px;
+    top: 30px;
+}
+
+.button-info {
+    width: 20px;
+    position: relative;
+    left: 180px;
+    top: 30px;
+}
+
+.button-clock {
+    width: 20px;
+    position: relative;
+    left: 220px;
+    top: 30px;
+}
