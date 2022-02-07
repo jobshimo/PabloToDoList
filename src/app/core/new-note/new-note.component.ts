@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/appState/app.state';
+import { loadingstop } from '../../store/appState/app.actions';
 
 @Component({
   selector: 'app-new-note',
@@ -9,10 +12,11 @@ export class NewNoteComponent implements OnInit {
 
   open: boolean = false;
 
-  constructor() { }
+  constructor( private store:Store<AppState>) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(){
+    this.store.dispatch( loadingstop() )
+  };
 
   openClose(){
     this.open = !this.open;

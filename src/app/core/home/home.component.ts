@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loading } from 'src/app/store/appState/app.actions';
+import { AppState } from 'src/app/store/appState/app.state';
+
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor( private store: Store<AppState>) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {
+    this.store.dispatch( loading() )
+  };
+
 
 }

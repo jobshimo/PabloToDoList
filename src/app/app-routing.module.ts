@@ -7,15 +7,15 @@ const routes: Routes = [
 
 
   {
-    path      :'home',
+    path      : 'home',
     component : HomeComponent,
   },
   {
-    path      :'newNote',
+    path      : 'newNote',
     component : NewNoteComponent
   },
   {
-    path      :'**',
+    path      : '**',
     redirectTo: 'home',
   }
 ];

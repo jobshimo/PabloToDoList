@@ -1,5 +1,5 @@
-<app-navbar></app-navbar>
-<!-- <app-navbarnotes></app-navbarnotes> -->
-<section>
+<app-navbar *ngIf="(loading$ |async)"></app-navbar>
+<app-navbarnotes *ngIf="!(loading$ |async)" ></app-navbarnotes>
+<section >
     <router-outlet></router-outlet>
 </section>
