@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-light bg-light nav-custom">
     <div class="container-fluid">
         <button class="btn  main-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-          <svg-icon src="../../../assets/icons/bars-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
+          <svg-icon src="../../../assets/icons/bars-solid.svg" [svgStyle]="{ 'width.px':22 }"></svg-icon>
       </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -23,18 +23,23 @@
 
             </ul>
             <form class="d-flex">
-                <svg-icon src="../../../assets/icons/search-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
-
+                <input type="text" name="buscar" placeholder="Buscar..." class="search-input" id="txt-buscar-tag" style="width: 180px; right: 8px;position: relative;" value="">
+                <button type="submit" class="btn-search"> 
+                     <!-- <span class="hidden-text"> -->
+                        <svg-icon src="../../../assets/icons/search-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
+                     <!-- </span> -->
+                </button>
             </form>
             <div class="dropstart">
-                <svg-icon data-bs-toggle="dropdown" aria-expanded="false" class="ms-3" src="../../../assets/icons/ellipsis-v-solid.svg" [svgStyle]="{ 'width.px':8 }"></svg-icon>
+                <svg-icon data-bs-toggle="dropdown" aria-expanded="false" class="ms-3" src="../../../assets/icons/ellipsis-v-solid.svg" [svgStyle]="{ 'width.px':10 }"></svg-icon>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a>
+                    </li>
                 </ul>
             </div>
 

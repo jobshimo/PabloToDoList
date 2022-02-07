@@ -12,7 +12,7 @@ export class NewNoteComponent implements OnInit {
 
   open: boolean = false;
 
-  constructor( private store:Store<AppState>) { }
+  constructor( private store: Store<AppState>) { }
 
   ngOnInit(){
     this.store.dispatch( loadingstop() )
