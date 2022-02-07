@@ -12,10 +12,12 @@ import { AppState } from 'src/app/store/appState/app.state';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private store: Store<AppState>) { }
+  constructor( private store: Store<AppState>) {
+
+    this.store.dispatch( loading() )
+   }
 
   ngOnInit() {
-    this.store.dispatch( loading() )
   };
 
 

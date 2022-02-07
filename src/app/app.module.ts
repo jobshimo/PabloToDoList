@@ -18,6 +18,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/appState/app.effects';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -34,6 +35,7 @@ import { AppEffects } from './store/appState/app.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     AngularSvgIconModule.forRoot(),
     StoreModule.forRoot(MAIN_REDUCER),
     // EffectsModule.forRoot([AppEffects]),
