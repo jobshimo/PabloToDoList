@@ -3,7 +3,7 @@ import { NoteState } from '../noteState/notes.state';
 
 
 
-export const selectNotesState = createFeatureSelector<NoteState>('appState');
+export const selectNotesState = createFeatureSelector<NoteState>('noteState');
 
 
 export const selectTempNote = createSelector(
@@ -11,7 +11,7 @@ export const selectTempNote = createSelector(
     (state: NoteState) => state.noteTemp
 );
 
-export const selectTitleTemp = createSelector(
-  selectNotesState,
-  (state:NoteState) => state.noteTemp
-);
+// export const selectTitleTemp = createSelector(
+//   selectNotesState,
+//   (state:NoteState) => state.noteTemp
+// );

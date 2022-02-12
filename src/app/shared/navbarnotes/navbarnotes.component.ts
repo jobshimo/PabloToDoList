@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { NoteState } from 'src/app/store/noteState/notes.state';
 import { Notes, NotesModel } from '../../models/notes.models';
 import {  selectTempNote } from '../../store/noteState/notes.selectors';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { StorageNotes } from 'src/app/models/storageNotes.model';
+import { deleteNoteTemp } from 'src/app/store/noteState/notes.actions';
 
 @Component({
   selector: 'app-navbarnotes',
   templateUrl: './navbarnotes.component.html',
   styleUrls: ['./navbarnotes.component.scss']
 })
-export class NavbarnotesComponent implements OnInit {
+export class NavbarnotesComponent implements OnInit, OnDestroy {
 
-  private notes$    : Observable<NotesModel[] | any> = this.store.select(selectTempNote);
+  private notes$    : Observable<NotesModel | null> = this.store.select(selectTempNote);
   private notesSubs!: Subscription;
-  public notes      : NotesModel[] = [];
+  public notes!     : NotesModel | null;
   public title      : string       = '';
   public text       : string       = ''
 
 
-  constructor( private store: Store<NoteState>) { }
+  constructor( private store: Store<NoteState>, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -36,11 +39,49 @@ export class NavbarnotesComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Borrar'
+      confirmButtonText: 'Salir'
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        // Swal.fire('Saved!', '', 'success');
+        this.store.dispatch(deleteNoteTemp())
+        this.router.navigate(['/home']);
+
+
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info');
+      }
     })
   }
 
   ngOnDestroy(): void {
     this.notesSubs.unsubscribe();
   };
+
+  saveNote(){
+    console.log(this.notes);
+
+    if (!this.notes) return;
+
+    let notes = localStorage.getItem('note');
+    // localStorage.setItem('note', JSON.stringify(this.notes))
+    if(notes){
+
+      let notesObject: StorageNotes =  JSON.parse(notes);
+      console.log(notesObject);
+      notesObject.notes.push(this.notes ? this.notes : {} as NotesModel);
+      localStorage.setItem('note', JSON.stringify(notesObject));
+      this.store.dispatch(deleteNoteTemp());
+      this.router.navigate(['/home']);
+    } else {
+      let newNotesStorage = new StorageNotes();
+      newNotesStorage.notes.push( this.notes ? this.notes : {} as NotesModel)
+      localStorage.setItem('note', JSON.stringify(newNotesStorage))
+      this.store.dispatch(deleteNoteTemp());
+      this.router.navigate(['/home']);
+    }
+
+
+  }
+
 };

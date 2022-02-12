@@ -1,7 +1,7 @@
 <div [class.div-prSmall]="!open" [class.div-prLarge]="open" class="">
 
-    <input  class="title" (click)="saveTempTitle()" name="title" [(ngModel)]="title" type="text" placeholder="Titulo....">
-    <textarea class="text-box" (click)="saveTempNote()" name="text" [(ngModel)]="text" name="nota" cols="30" rows="10" placeholder="texto..."></textarea>
+    <input class="title" (keyup)="saveTempNote()" name="title" [(ngModel)]="title" type="text" placeholder="Titulo....">
+    <textarea class="text-box" (keyup)="saveTempNote()" name="text" [(ngModel)]="text" name="nota" cols="30" rows="10" placeholder="texto..."></textarea>
 
     <button (click)="openClose()" [class.button-arrowUp]="!open" [class.button-arrowDown]="open" class="btn  main-button" type="button">
 

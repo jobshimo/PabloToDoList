@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/appState/app.state';
 import { loadingstop } from '../../store/appState/app.actions';
-import {  NotesModel, Notes } from '../../models/notes.models';
+import { NotesModel, Notes } from '../../models/notes.models';
 import { addNoteTemp, addTittleTemp } from '../../store/noteState/notes.actions';
+import { Observable, Subscription } from 'rxjs';
+import { selectTempNote } from 'src/app/store/noteState/notes.selectors';
 
 @Component({
   selector: 'app-new-note',
@@ -17,6 +19,9 @@ export class NewNoteComponent implements OnInit {
   text : string = '';
   title: string = '';
 
+  private notes$     : Observable<NotesModel | null> = this.store.select(selectTempNote);
+  private nostesSubs!: Subscription;
+
 
   constructor( private store: Store<AppState>) {
 
@@ -24,6 +29,12 @@ export class NewNoteComponent implements OnInit {
   }
 
   ngOnInit(){
+    this.nostesSubs = this.notes$.subscribe(note => {
+      if (note) {
+        this.text  = note.text;
+        this.title = note.title
+      }
+    })
   };
 
   openClose(){
@@ -31,18 +42,13 @@ export class NewNoteComponent implements OnInit {
   }
 
   saveTempNote(){
-
-    let newNote: NotesModel = new Notes(this.title,this.text, new Date().getMilliseconds().toString(), new Date(), '', []);
-    // localStorage.setItem('title',this.title,);
-    // localStorage.setItem('text',this.text, );
-    // localStorage.setItem('note',JSON.stringify(newNote) );
+    let newNote: NotesModel = new Notes(this.title,this.text, new Date().getTime().toString(), new Date(), '', []);
     this.store.dispatch(addNoteTemp({note: newNote}))
-    console.log(newNote)
   };
 
-  saveTempTitle(){
+  // saveTempTitle(){
 
-    this.store.dispatch(addTittleTemp({title: this.title}));
-    console.log(this.title)
-  };
+  //   this.store.dispatch(addTittleTemp({title: this.title}));
+  //   console.log(this.title)
+  // };
 };

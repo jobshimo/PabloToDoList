@@ -5,3 +5,15 @@
     bottom: 30px;
     background-color: green !important;
 }
+
+.create {
+    border: 2px solid black;
+    margin: 12px;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+}
