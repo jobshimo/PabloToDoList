@@ -1,7 +1,7 @@
 <div [class.div-prSmall]="!open" [class.div-prLarge]="open" class="">
 
-    <input name="title" [(ngModel)]="title" type="text" placeholder="Titulo....">
-    <textarea (keyup)="save()" name="text" [(ngModel)]="text" name="nota" cols="30" rows="10" placeholder="texto..."></textarea>
+    <input  class="title" (click)="saveTempTitle()" name="title" [(ngModel)]="title" type="text" placeholder="Titulo....">
+    <textarea class="text-box" (click)="saveTempNote()" name="text" [(ngModel)]="text" name="nota" cols="30" rows="10" placeholder="texto..."></textarea>
 
     <button (click)="openClose()" [class.button-arrowUp]="!open" [class.button-arrowDown]="open" class="btn  main-button" type="button">
 
@@ -14,7 +14,7 @@
 <div *ngIf="!open" class="div-footer">
 
     <!-- Button trigger modal -->
-    <button (click)="save()" type="button" class="btn  button-folder" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button type="button" class="btn  button-folder" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Carpeta...
 </button>
     <svg-icon class="button-star" src="../../../assets/icons/star-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>

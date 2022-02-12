@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/appState/app.state';
 import { loadingstop } from '../../store/appState/app.actions';
-import {  NotesModel, Notes } from '../../models/notas.models';
-import { addNoteTemp } from '../../store/noteState/notes.actions';
+import {  NotesModel, Notes } from '../../models/notes.models';
+import { addNoteTemp, addTittleTemp } from '../../store/noteState/notes.actions';
 
 @Component({
   selector: 'app-new-note',
@@ -30,14 +30,19 @@ export class NewNoteComponent implements OnInit {
     this.open = !this.open;
   }
 
-  save(){
+  saveTempNote(){
 
-    let newNote: NotesModel = new Notes(this.title,this.text, new Date().getMilliseconds().toString(), new Date(), '', [])
+    let newNote: NotesModel = new Notes(this.title,this.text, new Date().getMilliseconds().toString(), new Date(), '', []);
     // localStorage.setItem('title',this.title,);
     // localStorage.setItem('text',this.text, );
     // localStorage.setItem('note',JSON.stringify(newNote) );
     this.store.dispatch(addNoteTemp({note: newNote}))
     console.log(newNote)
-  }
+  };
 
-}
+  saveTempTitle(){
+
+    this.store.dispatch(addTittleTemp({title: this.title}));
+    console.log(this.title)
+  };
+};

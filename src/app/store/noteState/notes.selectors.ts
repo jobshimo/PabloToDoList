@@ -10,3 +10,8 @@ export const selectTempNote = createSelector(
   selectNotesState,
     (state: NoteState) => state.noteTemp
 );
+
+export const selectTitleTemp = createSelector(
+  selectNotesState,
+  (state:NoteState) => state.noteTemp
+);

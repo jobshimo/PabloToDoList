@@ -1,17 +1,14 @@
 <nav class="navbar navbar-expand navbar-light bg-light nav-custom">
     <div class="container-fluid">
-        <button class="btn  main-button" type="button">
+        <button  class="btn  main-button" type="button">
         <svg-icon src="../../../assets/icons/check-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
     </button>
-        <button routerLink="/home" class="btn  main-button" type="button">
+        <button (click)="deleteNote()" routerLink="/home" class="btn  main-button" type="button">
       <svg-icon  src="../../../assets/icons/times-solid.svg" [svgStyle]="{ 'width.px':17 }"></svg-icon>
   </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-
             </ul>
             <form class="d-flex">
                 <svg-icon src="../../../assets/icons/folder-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>

@@ -1,16 +1,19 @@
 import { createAction, props } from "@ngrx/store";
-import { NotesModel } from '../../models/notas.models';
+import { NotesModel } from '../../models/notes.models';
 
 
 
 export enum Types {
 
   ADD_TEMP_NOTE  = '[Notes State] Temp Note Add',
+  ADD_TEMP_TITLE = '[Notes State] Temp Title Add'
 
-  // CHANGE_NAV = '[App State] Chgange Nav'
 };
 
 
-  // Loading:
+  // NOTE TEMPORAL
   export const addNoteTemp  = createAction( Types.ADD_TEMP_NOTE, props<{ note: NotesModel}>() );
-  // export const changeNav = createAction( Types.CHANGE_NAV );
+  
+  //title//
+  export const addTittleTemp = createAction( Types.ADD_TEMP_TITLE, props<{ title: string }>())
+

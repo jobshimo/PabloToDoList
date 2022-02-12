@@ -1,4 +1,4 @@
-import { NotesModel } from '../../models/notas.models';
+import { NotesModel } from '../../models/notes.models';
 
 
 export interface NoteState {
@@ -7,10 +7,6 @@ export interface NoteState {
     loading  : boolean,
     error    : any,
     notes    : NotesModel[],
-
-
-
-
 };
 
 export const initialState: NoteState = {
