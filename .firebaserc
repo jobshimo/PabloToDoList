@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todo-list-6bf39": {
+      "hosting": {
+        "TodoList": [
+          "todo-list-6bf39"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todo-list-6bf39"
+  }
+}

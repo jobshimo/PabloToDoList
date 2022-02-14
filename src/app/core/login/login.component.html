@@ -1,0 +1,32 @@
+
+
+
+<body class="text-center">
+    
+    <main class="form-signin">
+      <form>
+        <img class="mb-4" src="../../../assets/images/login.jpg" alt="" width="120" height="120">
+        <br>
+        <h1 class="h3 mb-3 fw-normal">Inicie Sesión</h1>
+    
+        <div class="form-floating">
+          <input name="email" type="email" [(ngModel)]="email" class="form-control"  id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating">
+          <input name="password" type="password" [(ngModel)]="password"  class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Recuerdame
+          </label>
+        </div>
+        <div _ngcontent-wyy-c51="" class="col-sm-12 text-center"> No tienes una Cuenta? <a _ngcontent-wyy-c51="" routerlink="/register" class="text-primary m-l-5" ng-reflect-router-link="/register" href="/register"><b _ngcontent-wyy-c51="">Registrate</b></a>
+        </div>
+        <br>
+        <button (click)="login()" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+        <p class="mt-5 mb-3 text-muted"></p>
+      </form>
+    </main>
+</body>

@@ -23,7 +23,8 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
   public text       : string       = ''
 
 
-  constructor( private store: Store<NoteState>, private router: Router) { }
+  constructor( private store: Store<NoteState>, 
+               private router: Router) { }
 
   ngOnInit(): void {
 
@@ -46,27 +47,20 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
         // Swal.fire('Saved!', '', 'success');
         this.store.dispatch(deleteNoteTemp())
         this.router.navigate(['/home']);
-
-
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info');
       }
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.notesSubs.unsubscribe();
+    });
   };
 
+  
   saveNote(){
     console.log(this.notes);
 
     if (!this.notes) return;
-
     let notes = localStorage.getItem('note');
-    // localStorage.setItem('note', JSON.stringify(this.notes))
-    if(notes){
 
+    if(notes){
       let notesObject: StorageNotes =  JSON.parse(notes);
       console.log(notesObject);
       notesObject.notes.push(this.notes ? this.notes : {} as NotesModel);
@@ -80,8 +74,9 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
       this.store.dispatch(deleteNoteTemp());
       this.router.navigate(['/home']);
     }
+  };
 
-
-  }
-
+  ngOnDestroy(): void {
+    this.notesSubs.unsubscribe();
+  };
 };
