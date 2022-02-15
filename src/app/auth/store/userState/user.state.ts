@@ -1,4 +1,5 @@
-import { UserModels } from '../../models/user.models';
+import { MainState } from 'src/app/main.reducer';
+import { UserModels } from '../../../models/user.models';
 
 
 export interface UserState {
@@ -7,6 +8,10 @@ export interface UserState {
     loading: boolean,
     error  : any
 };
+
+export interface MainStateWithUser  extends MainState{
+    userState : UserState
+}
 
 export const initialState: UserState = {
 

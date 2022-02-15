@@ -8,5 +8,5 @@ export interface CredentialsModels {
 
 export class Credentials implements CredentialsModels{
 
-    constructor( public email: string, public password: string){}
+    constructor( public email: string, public password: string ){}
 };

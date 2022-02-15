@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { UserState } from 'src/app/store/userState/user.state';
+import { FirebaseService } from '../../services/firebase.service';
+import { register } from '../store/userState/user.actions';
+import { Credentials } from '../../models/credentials.models';
+import { UserState } from '../store/userState/user.state';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +23,8 @@ export class RegisterComponent implements OnInit {
 
   register( email: string, password: string){
     
-    this.firebaseService.register({ email, password } );
+    // this.firebaseService.register({ email, password } );
+    this.store.dispatch(register( { credentials: new Credentials( email, password )}))
   };
 
 }

@@ -10,5 +10,5 @@ export interface UserModels {
 
 export class User implements UserModels{
 
-    constructor( public id: string, public email: string, public regDate: string, public name: string){}
+    constructor( public id: string, public email: string, public regDate: string, public name: string ){}
 };

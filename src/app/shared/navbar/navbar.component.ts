@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { logout } from 'src/app/auth/store/userState/user.actions';
+import { UserState } from 'src/app/auth/store/userState/user.state';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
   open: boolean = false;
 
-  constructor() { }
+  constructor(private store: Store<UserState>) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +20,9 @@ export class NavbarComponent implements OnInit {
   openClose(){
     this.open = !this.open;
   };
+
+  logout(){
+    this.store.dispatch(logout())
+  }
 
 }

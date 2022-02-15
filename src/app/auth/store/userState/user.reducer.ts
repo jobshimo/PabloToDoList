@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { login, loginError, loginSuccess, logout, logoutError, register, registerSuccess, registerError } from './user.actions';
+import { login, loginError, loginSuccess, logout, logoutError, register, registerSuccess, registerError, getUserData, getUserDataSucces, getUserDataError, setUserData, setUserDataSuccess, setUserDataError } from './user.actions';
 import { UserState, initialState } from './user.state';
 
 
@@ -55,5 +55,40 @@ export const UserStateReducer = createReducer(
         error
     })),
 
+    //GET USER DATA
 
-)
+    on( getUserData, ( state: UserState, { id }) => ({
+        ...state,
+        loading : false,
+    })),
+
+    on( getUserDataSucces, ( state: UserState, { user }) => ({
+        ...state,
+        loading : false,
+        user
+    })),
+
+    on( getUserDataError, ( state: UserState, { error }) => ({
+        ...state,
+        loading : false,
+        error
+    })),
+
+    //SET USER DATA//
+
+    on( setUserData, ( state: UserState, { user }) => ({
+        ...state,
+        loading : true,
+    })),
+
+    on( setUserDataSuccess, ( state: UserState ) => ({
+        ...state,
+        loading : false
+    })),
+
+    on( setUserDataError, ( state: UserState, { error }) => ({
+        ...state,
+        loading : false,
+        error
+    })),
+);
