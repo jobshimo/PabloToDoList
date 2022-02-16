@@ -18,14 +18,17 @@ const routes: Routes = [
     component : NewNoteComponent
   },
   {
+    path      : 'auth',
+   loadChildren: ()=> import ('./auth/auth.module').then( m => m.AuthModule)
+  },
+  {
     path      : '**',
     redirectTo: 'home',
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),
-  AuthRoutingModule],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

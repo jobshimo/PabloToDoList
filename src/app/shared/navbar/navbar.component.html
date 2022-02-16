@@ -24,7 +24,7 @@
             </ul>
             <form class="d-flex">
                 <input type="text" name="buscar" placeholder="Buscar..." class="search-input" id="txt-buscar-tag" style="width: 150px; right: 4px;position: relative;" value="">
-                <button type="submit" class="btn-search"> 
+                <button type="submit" class="btn-search">
                      <!-- <span class="hidden-text"> -->
                         <svg-icon src="../../../assets/icons/search-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
                      <!-- </span> -->
@@ -50,21 +50,21 @@
 
 
 
-  <div  class="offcanvas offcanvas-start" style="width: 220px; background: green;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" style="width: 220px; background: green;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         Menu
-        <button  type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <!-- <div>
             Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
         </div> -->
-         <div  class="dropdown mt-2">
+        <div class="dropdown mt-2">
             <button data-bs-dismiss="offcanvas" class="btn btn-primary" style="border-radius: 10px; background: black; position: relative; top: 10px;" type="button">
-                <a class="nav-link" routerLink="login">Login</a>
+                <a class="nav-link" routerLink="auth">Login</a>
        </button>
-       <button data-bs-dismiss="offcanvas" routerLink="register" class="btn btn-secondary" style="border-radius: 10px; background: black; top: 40px; position: relative;" type="button">
-        <a class="nav-link " routerLink="register">Register</a>
+            <button data-bs-dismiss="offcanvas" class="btn btn-secondary" style="border-radius: 10px; background: black; top: 40px; position: relative;" type="button">
+        <a class="nav-link " routerLink="auth/register">Register</a>
       </button>
             <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <li><a class="dropdown-item" href="#">Action</a></li>
