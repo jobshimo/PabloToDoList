@@ -24,6 +24,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AppEffects } from './store/appState/app.effects';
+import { NotesEffects } from './store/noteState/notes.effects';
 
 
 
@@ -45,7 +46,7 @@ import { AppEffects } from './store/appState/app.effects';
     AuthModule,
     AngularSvgIconModule.forRoot(),
     StoreModule.forRoot(MAIN_REDUCER),
-    EffectsModule.forRoot([ AppEffects ]),
+    EffectsModule.forRoot([ AppEffects, NotesEffects ]),
     StoreDevtoolsModule.instrument({
       maxAge: 100, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

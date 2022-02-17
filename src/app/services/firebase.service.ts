@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { doc, Firestore, getFirestore, setDoc } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDocs, getFirestore, setDoc } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { onAuthStateChanged } from 'firebase/auth';
-import { getDoc } from 'firebase/firestore';
+import { getDoc, query } from 'firebase/firestore';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { CredentialsModels } from '../models/credentials.models';
 import { UserModels } from '../models/user.models';
 import { getUserData } from '../auth/store/userState/user.actions';
 import { UserState } from '../auth/store/userState/user.state';
+import { Notes, NotesModel } from '../models/notes.models';
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +57,23 @@ export class FirebaseService {
     }
   });
   };
+
+  setNotes( notes: NotesModel ){
+
+    const newNotes = doc( getFirestore(), 'notes', notes.id );
+    return setDoc( newNotes, { ...notes }, { merge: true });
+  };
+
+  async getAllNotes( ){
+    const notesCollection = collection(getFirestore(), "notes");
+    const q = query(notesCollection);
+    let documents: NotesModel[] = [];
+    const queryCollection = await getDocs(q);
+     queryCollection.forEach( doc => {
+        let  {
+          title, text, id, dateCreate, dateFinish, folder } = doc.data();
+       documents.push(new Notes(title, text, id, dateCreate, dateFinish, folder));
+      });
+    return documents;
+    };
 };
