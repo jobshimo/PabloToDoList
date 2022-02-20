@@ -8,6 +8,11 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { StorageNotes } from 'src/app/models/storageNotes.model';
 import { deleteNoteTemp } from 'src/app/store/noteState/notes.actions';
+import { UserModels } from 'src/app/models/user.models';
+import { selectUser } from 'src/app/auth/store/userState/user.selectors';
+import { MainState } from 'src/app/main.reducer';
+import { setAllNotesData } from '../../store/noteState/notes.actions';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-navbarnotes',
@@ -20,11 +25,16 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
   private notesSubs!: Subscription;
   public notes!     : NotesModel | null;
   public title      : string       = '';
-  public text       : string       = ''
+  public text       : string       = '';
+
+  private users$    : Observable<UserModels> = this.store.select(selectUser)
+  private usersSubs : Subscription;
 
 
-  constructor( private store: Store<NoteState>, 
-               private router: Router) { }
+
+  constructor( private store          : Store<MainState>, 
+               private router         : Router,
+               private firebaseService: FirebaseService ) { }
 
   ngOnInit(): void {
 
@@ -54,7 +64,7 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
   };
 
   
-  saveNote(){
+  saveNoteLocalStorage(){
     console.log(this.notes);
 
     if (!this.notes) return;
@@ -85,6 +95,11 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
       this.store.dispatch(deleteNoteTemp());
       this.router.navigate(['/home']);
     }
+  };
+
+  saveNoteFirebase(){
+
+      
   };
 
 

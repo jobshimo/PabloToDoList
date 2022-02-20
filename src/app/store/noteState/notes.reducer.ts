@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState, NoteState } from './notes.state';
-import { addNoteTemp, deleteNoteTemp, getAllNotes, getAllNotesSuccess, getAllNotesError } from './notes.actions';
+import { addNoteTemp, deleteNoteTemp, getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, setAllNotesDataSuccess, setAllNotesDataError } from './notes.actions';
 
 
 
@@ -38,7 +38,24 @@ export const NotesStateReducer = createReducer(
         error
     })),
 
-)
+    //SET NOTES DATA//
+
+    on( setAllNotesData, ( state: NoteState, { note } ) => ({
+        ...state,
+        loading: true,
+    })),
+
+    on( setAllNotesDataSuccess, ( state: NoteState  ) => ({
+        ...state,
+        loading: false,
+    })),
+
+    on( setAllNotesDataError, ( state: NoteState, { error } ) => ({
+        ...state,
+        loading: false,
+        error
+    })),
+);
 
 
 

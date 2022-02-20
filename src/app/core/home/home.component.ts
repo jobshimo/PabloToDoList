@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { StorageNotes } from 'src/app/models/storageNotes.model';
 import { loading } from 'src/app/store/appState/app.actions';
 import { NotesModel } from '../../models/notes.models';
-import { addNoteTemp, getAllNotes } from '../../store/noteState/notes.actions';
-import { ActivationEnd, Router } from '@angular/router';
+import { addNoteTemp, getAllNotes, setAllNotesData } from '../../store/noteState/notes.actions';
+import {  Router } from '@angular/router';
 import { Observable, Subscription, takeUntil } from 'rxjs';
 import { UserModels } from 'src/app/models/user.models';
 import { selectUser } from 'src/app/auth/store/userState/user.selectors';
@@ -41,18 +41,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.usersSubs = this.users$.subscribe( user =>{
       if (!user)   this.getNote();
-      // else this.allNotes = []
       else{
         this.notesSubs = this.notes$.subscribe( notes => this.allNotes = notes);
         this.store.dispatch(getAllNotes());
+        this.ngOnDestroy();
       }
     });
-
-    // this.notesSubs = this.notes$.subscribe( notes => this.allNotes = notes);
-    // this.store.dispatch(getAllNotes());
   };
-
-
 
   getNote(){
     let notes = localStorage.getItem('note');
@@ -69,6 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.usersSubs.unsubscribe();
-    this.notesSubs.unsubscribe();
+    // this.notesSubs.unsubscribe();
   };
 }
