@@ -3,7 +3,8 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { from, of } from "rxjs";
 import { catchError, map, switchMap, take } from "rxjs/operators";
 import { FirebaseService } from '../../services/firebase.service';
-import { getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, setAllNotesDataSuccess, setAllNotesDataError } from './notes.actions';
+import { getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, setAllNotesDataSuccess, setAllNotesDataError, goHome } from './notes.actions';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -11,7 +12,8 @@ import { getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, set
 export class NotesEffects {
 
     constructor( private actions$       : Actions, 
-                 private firebaseService: FirebaseService ){};
+                 private firebaseService: FirebaseService,
+                 private router         : Router ){};
 
 
 
@@ -40,4 +42,16 @@ export class NotesEffects {
     ),
   ),
  );
+
+ goHome$ = createEffect( ()=>
+ this.actions$.pipe(
+   ofType(setAllNotesDataSuccess,setAllNotesDataError),
+   map(() =>{ 
+      this.router.navigate(['/home']);
+      return goHome()
+    }
+  )))
+
 };
+
+  

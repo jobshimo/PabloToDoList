@@ -29,7 +29,7 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
 
   private users$    : Observable<UserModels> = this.store.select(selectUser)
   private usersSubs : Subscription;
-
+  private user      : UserModels;
 
 
   constructor( private store          : Store<MainState>, 
@@ -37,7 +37,7 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
                private firebaseService: FirebaseService ) { }
 
   ngOnInit(): void {
-
+    this.usersSubs = this.users$.subscribe( user => this.user = user);
     this.notesSubs = this.notes$.subscribe( notes => this.notes = notes);
   };
 
@@ -63,19 +63,19 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     });
   };
 
+  save(){
+    if (this.user)  this.saveNoteFirebase();
+    else this.saveNoteLocalStorage();
+  }
   
   saveNoteLocalStorage(){
     console.log(this.notes);
 
     if (!this.notes) return;
     let notes = localStorage.getItem('note');
-
     if(notes){
       let notesObject: StorageNotes =  JSON.parse(notes);
-      console.log(notesObject);
-
       let check: boolean = false;
-
         notesObject.notes.forEach( (note, index) => {
           if (note.id === this.notes.id) {
             notesObject.notes.splice(index, 1, this.notes)
@@ -98,12 +98,12 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
   };
 
   saveNoteFirebase(){
-
-      
+    this.store.dispatch(setAllNotesData({ note:this.notes }))  
   };
 
 
   ngOnDestroy(): void {
-    this.notesSubs.unsubscribe();
+    this.notesSubs?.unsubscribe();
+    this.usersSubs?.unsubscribe();
   };
 };

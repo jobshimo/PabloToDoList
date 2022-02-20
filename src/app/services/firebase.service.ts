@@ -38,6 +38,7 @@ export class FirebaseService {
   };
 
   setUser( user: UserModels ){
+console.log(user);
 
     const newUser = doc( getFirestore(), 'users', user.id );
     return setDoc( newUser, { ...user }, { merge: true });
@@ -51,6 +52,8 @@ export class FirebaseService {
   statusSession(){
     const auth = getAuth();
   onAuthStateChanged( auth, ( user ) => {
+    console.log(user);
+    
     if (user) this.store.dispatch( getUserData({ id: user.uid }))
      else {
       console.log('NO HAY USUARIO');
@@ -59,10 +62,21 @@ export class FirebaseService {
   };
 
   setNotes( notes: NotesModel ){
-
     const newNotes = doc( getFirestore(), 'notes', notes.id );
     return setDoc( newNotes, { ...notes }, { merge: true });
   };
+
+  setMultipleNotes(notes: NotesModel[], id: string){
+
+    notes.forEach((note)=>{ 
+      
+      this.setNotes(note)
+    
+    
+    });
+
+
+  }
 
   async getAllNotes( ){
     const notesCollection = collection(getFirestore(), "notes");

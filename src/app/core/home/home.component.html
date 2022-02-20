@@ -3,7 +3,7 @@
 
     <div (click)="editNote(note)" class="create">
         <div class="date ms-2">
-            <div>{{note.dateCreate | date}}</div>
+            <div >{{note.dateCreate['seconds'] | date}}</div>
         </div>
         <div class="ms-2">
 

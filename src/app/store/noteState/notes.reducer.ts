@@ -48,6 +48,7 @@ export const NotesStateReducer = createReducer(
     on( setAllNotesDataSuccess, ( state: NoteState  ) => ({
         ...state,
         loading: false,
+        noteTemp: null
     })),
 
     on( setAllNotesDataError, ( state: NoteState, { error } ) => ({

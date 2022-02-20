@@ -81,7 +81,7 @@ export const UserStateReducer = createReducer(
         loading : true,
     })),
 
-    on( setUserDataSuccess, ( state: UserState ) => ({
+    on( setUserDataSuccess, ( state: UserState, {id}) => ({
         ...state,
         loading : false
     })),

@@ -41,10 +41,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.usersSubs = this.users$.subscribe( user =>{
       if (!user)   this.getNote();
+
       else{
-        this.notesSubs = this.notes$.subscribe( notes => this.allNotes = notes);
+        this.notesSubs = this.notes$.subscribe( notes => {
+          console.log(notes);
+          
+          this.allNotes = notes});
         this.store.dispatch(getAllNotes());
-        this.ngOnDestroy();
       }
     });
   };
@@ -63,7 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.usersSubs.unsubscribe();
-    // this.notesSubs.unsubscribe();
+    this.usersSubs?.unsubscribe();
+    this.notesSubs?.unsubscribe();
   };
 }

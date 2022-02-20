@@ -24,6 +24,8 @@ import { UserModels } from '../../../models/user.models';
     SET_USER_DATA         = '[User State] Set User Data',
     SET_USER_DATA_SUCCESS = '[User State] Set User Data: Success',
     SET_USER_DATA_ERROR   = '[User State] Set User Data: Error',
+    //REGISTER REMOVE NOTES LOCAL//
+    REGISTER_REMOVE_NOTES_LOCAL = '[User State] Register Remove Notes Local'
  };
 
 
@@ -44,6 +46,9 @@ import { UserModels } from '../../../models/user.models';
  export const getUserDataSucces = createAction( Types.GET_USER_DATA_SUCCESS, props <{ user: UserModels }>());
  export const getUserDataError  = createAction( Types.GET_USER_DATA_ERROR, props <{ error: any }>());
  //SET USER DATA//
- export const setUserData        = createAction( Types.SET_USER_DATA_SUCCESS, props <{ user: UserModels }>());
- export const setUserDataSuccess = createAction( Types.SET_USER_DATA_SUCCESS );
+ export const setUserData        = createAction( Types.SET_USER_DATA, props <{ user: UserModels }>());
+ export const setUserDataSuccess = createAction( Types.SET_USER_DATA_SUCCESS,props <{ id: string }>() );
  export const setUserDataError   = createAction( Types.SET_USER_DATA_ERROR, props <{ error: any }>());
+ //REGISTER REMOVE NOTES LOCAL//
+ export const registerRemoveNotesLocal = createAction( Types.REGISTER_REMOVE_NOTES_LOCAL );
+

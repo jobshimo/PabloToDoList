@@ -3,9 +3,10 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { catchError, from, map, of, switchMap, take } from "rxjs";
+import { StorageNotes } from "src/app/models/storageNotes.model";
 import { User } from "../../../models/user.models";
 import { FirebaseService } from "../../../services/firebase.service";
-import { login, getUserData, loginError, getUserDataSucces, getUserDataError, logout, logoutSuccess, logoutError, setUserData, setUserDataSuccess, setUserDataError, register, registerError } from './user.actions';
+import { login, getUserData, loginError, getUserDataSucces, getUserDataError, logout, logoutSuccess, logoutError, setUserData, setUserDataSuccess, setUserDataError, register, registerError, registerRemoveNotesLocal } from './user.actions';
 import { UserState } from './user.state';
 
 
@@ -66,7 +67,7 @@ export class UserEffects {
       ofType( setUserData ),
      switchMap( ({ user }) =>  from(this.firebaseService.setUser( user )).pipe(
       take(1),
-      map( () => setUserDataSuccess() ),
+      map( () => setUserDataSuccess({id: user.id}) ),
       catchError( error => of( setUserDataError({ error })))
       ),),
     ),
@@ -83,4 +84,20 @@ export class UserEffects {
       ),
    ),
   );
-}
+
+  userRegisterRemoveLocalNotes$ = createEffect( () =>
+  this.actions$.pipe(
+    ofType(setUserDataSuccess),
+    map( ({id}) =>{
+      
+      let notes = localStorage.getItem('note');
+      let objectNote: StorageNotes = JSON.parse(notes ? notes : '{}');
+    
+      if (notes) {
+        this.firebaseService.setMultipleNotes( objectNote.notes, id );
+        localStorage.removeItem('note');
+      }
+      return registerRemoveNotesLocal();
+    })
+  ))
+};
