@@ -37,7 +37,7 @@ export class FirebaseService {
     return createUserWithEmailAndPassword( this.auth, email, password );
   };
 
-  setUser(user:UserModels){
+  setUser( user: UserModels ){
 
     const newUser = doc( getFirestore(), 'users', user.id );
     return setDoc( newUser, { ...user }, { merge: true });

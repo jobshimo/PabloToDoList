@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectApp } from './store/appState/app.selectors';
 import { AppState } from './store/appState/app.state';
+import { FirebaseService } from './services/firebase.service';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class AppComponent implements OnInit {
 
   public loading$: Observable<boolean> = this.store.select(selectApp);
 
-  constructor( private store: Store<AppState>){}
+  constructor( private store: Store<AppState>, private firebaseService: FirebaseService){}
 
   ngOnInit() {
+    this.firebaseService.statusSession();
   }
 };
 

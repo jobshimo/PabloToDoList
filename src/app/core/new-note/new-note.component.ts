@@ -14,8 +14,13 @@ import { selectTempNote } from 'src/app/store/noteState/notes.selectors';
 })
 export class NewNoteComponent implements OnInit {
 
+<<<<<<< HEAD
   open  : boolean = false;
   new   : boolean = true;
+=======
+  open : boolean = false;
+  new  : boolean = true;
+>>>>>>> 497d553f6cf364523dfd49e70c0f9ec72bffefec
   text  : string = '';
   title : string = '';
   id    : string | null = null;
@@ -32,7 +37,11 @@ export class NewNoteComponent implements OnInit {
   ngOnInit(){
     this.nostesSubs = this.notes$.subscribe(note => {
       if (note) {
+<<<<<<< HEAD
         this.new   = false;
+=======
+        this.new = false;
+>>>>>>> 497d553f6cf364523dfd49e70c0f9ec72bffefec
         this.text  = note.text;
         this.title = note.title
         this.id    = note.id
@@ -46,7 +55,11 @@ export class NewNoteComponent implements OnInit {
 
   saveTempNote(){
     let newNote: NotesModel = new Notes(this.title,this.text, this.id ? this.id : new Date().getTime().toString() , new Date(), '', []);
+<<<<<<< HEAD
     this.store.dispatch(addNoteTemp({ note: newNote }))
+=======
+    this.store.dispatch(addNoteTemp({note: newNote}))
+>>>>>>> 497d553f6cf364523dfd49e70c0f9ec72bffefec
   };
 
   // saveTempTitle(){
