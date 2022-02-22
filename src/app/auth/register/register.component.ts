@@ -6,6 +6,7 @@ import { Credentials } from '../../models/credentials.models';
 import { UserState } from '../store/userState/user.state';
 import Swal from 'sweetalert2';
 import { StorageNotes } from 'src/app/models/storageNotes.model';
+import { UserModels } from 'src/app/models/user.models';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +15,9 @@ import { StorageNotes } from 'src/app/models/storageNotes.model';
 })
 export class RegisterComponent implements OnInit {
 
-  public email   :string = '';
-  public password: string = ''
+  public email   :string  = '';
+  public password: string = '';
+  
 
   constructor( private firebaseService: FirebaseService, 
     private            store          : Store<UserState>) { }
@@ -23,7 +25,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register( email: string, password: string){
+  register( email: string, password: string ){
 
     let notes = localStorage.getItem('note');
     let objectNote: StorageNotes = JSON.parse(notes ? notes : '{}');
@@ -36,7 +38,6 @@ export class RegisterComponent implements OnInit {
         'info'
       ) 
     }
-    // this.firebaseService.register({ email, password } );
     this.store.dispatch(register( { credentials: new Credentials( email, password )}))
   };
 

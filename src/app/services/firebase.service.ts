@@ -38,7 +38,6 @@ export class FirebaseService {
   };
 
   setUser( user: UserModels ){
-console.log(user);
 
     const newUser = doc( getFirestore(), 'users', user.id );
     return setDoc( newUser, { ...user }, { merge: true });
@@ -52,7 +51,6 @@ console.log(user);
   statusSession(){
     const auth = getAuth();
   onAuthStateChanged( auth, ( user ) => {
-    console.log(user);
     
     if (user) this.store.dispatch( getUserData({ id: user.uid }))
      else {
@@ -66,17 +64,13 @@ console.log(user);
     return setDoc( newNotes, { ...notes }, { merge: true });
   };
 
-  setMultipleNotes(notes: NotesModel[], id: string){
+  setMultipleNotes( notes: NotesModel[], id: string ){
 
-    notes.forEach((note)=>{ 
+    notes.forEach(( note ) => {
       
-      this.setNotes(note)
-    
-    
+      this.setNotes(note);
     });
-
-
-  }
+  };
 
   async getAllNotes( ){
     const notesCollection = collection(getFirestore(), "notes");
@@ -85,8 +79,8 @@ console.log(user);
     const queryCollection = await getDocs(q);
      queryCollection.forEach( doc => {
         let  {
-          title, text, id, dateCreate, dateFinish, folder } = doc.data();
-       documents.push(new Notes(title, text, id, dateCreate, dateFinish, folder));
+          title, text, id, dateCreate, dateFinish, folder, owner } = doc.data();
+       documents.push(new Notes(title, text, id, dateCreate, dateFinish, folder, owner));
       });
     return documents;
     };

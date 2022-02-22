@@ -31,7 +31,7 @@ export class NotesEffects {
     ),
  );
 
-     setNoteData$ = createEffect(()=>
+     setNoteData$ = createEffect( () =>
      this.actions$.pipe(
       ofType(setAllNotesData),
       switchMap( ({ note }) =>  from(this.firebaseService.setNotes( note )).pipe(
@@ -43,15 +43,16 @@ export class NotesEffects {
   ),
  );
 
- goHome$ = createEffect( ()=>
- this.actions$.pipe(
-   ofType(setAllNotesDataSuccess,setAllNotesDataError),
-   map(() =>{ 
-      this.router.navigate(['/home']);
-      return goHome()
-    }
-  )))
-
+     goHome$ = createEffect( () =>
+     this.actions$.pipe(
+      ofType( setAllNotesDataSuccess, setAllNotesDataError ),
+      map(() => { 
+       this.router.navigate(['/home']);
+       return goHome()
+      }
+     ),
+    ),
+  );
 };
 
   

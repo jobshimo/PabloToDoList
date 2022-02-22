@@ -67,7 +67,7 @@ export class UserEffects {
       ofType( setUserData ),
      switchMap( ({ user }) =>  from(this.firebaseService.setUser( user )).pipe(
       take(1),
-      map( () => setUserDataSuccess({id: user.id}) ),
+      map( () => setUserDataSuccess({ id: user.id }) ),
       catchError( error => of( setUserDataError({ error })))
       ),),
     ),
@@ -87,15 +87,15 @@ export class UserEffects {
 
   userRegisterRemoveLocalNotes$ = createEffect( () =>
   this.actions$.pipe(
-    ofType(setUserDataSuccess),
-    map( ({id}) =>{
+    ofType( setUserDataSuccess ),
+    map( ({ id }) =>{
       
-      let notes = localStorage.getItem('note');
-      let objectNote: StorageNotes = JSON.parse(notes ? notes : '{}');
+      let notes                    = localStorage.getItem( 'note' );
+      let objectNote: StorageNotes = JSON.parse( notes ? notes : '{}' );
     
-      if (notes) {
+      if ( notes ) {
         this.firebaseService.setMultipleNotes( objectNote.notes, id );
-        localStorage.removeItem('note');
+        localStorage.removeItem( 'note' );
       }
       return registerRemoveNotesLocal();
     })

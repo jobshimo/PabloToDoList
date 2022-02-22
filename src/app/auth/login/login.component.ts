@@ -13,7 +13,7 @@ import { UserState } from '../store/userState/user.state';
 })
 export class LoginComponent implements OnInit {
 
-  public email: string = '';
+  public email   : string    = '';
   public password: string = '';
 
   constructor( private firebaseService: FirebaseService, 
@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-
-    // this.firebaseService.login( this.email, this.password );
-    this.store.dispatch(login( { credentials: new Credentials( this.email, this.password )}))
-    console.log(this.email, this.password);
+    this.store.dispatch(login( { credentials: new Credentials( this.email, this.password )}));
   };
 };

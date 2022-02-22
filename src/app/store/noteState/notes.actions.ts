@@ -5,7 +5,7 @@ import { NotesModel } from '../../models/notes.models';
 
 export enum Types {
 
-  GO_HOME   = '[Notes State] Navigate to Home',
+  GO_HOME                    = '[Notes State] Navigate to Home',
   
   ADD_TEMP_NOTE              = '[Notes State] Temp Note Add',
   DELETE_TEMP_NOTE           = '[Notes State] Temp Note Delete',
@@ -20,7 +20,7 @@ export enum Types {
   // ADD_TEMP_TITLE        = '[Notes State] Temp Title Add'
 };
 
-export const goHome = createAction( Types.GO_HOME );
+  export const goHome                 = createAction( Types.GO_HOME );
 
   // NOTE TEMPORAL
   export const addNoteTemp            = createAction( Types.ADD_TEMP_NOTE, props<{ note: NotesModel }>() );

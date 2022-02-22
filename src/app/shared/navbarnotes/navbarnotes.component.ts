@@ -21,20 +21,19 @@ import { FirebaseService } from '../../services/firebase.service';
 })
 export class NavbarnotesComponent implements OnInit, OnDestroy {
 
-  private notes$    : Observable<NotesModel | null> = this.store.select(selectTempNote);
-  private notesSubs!: Subscription;
-  public notes!     : NotesModel | null;
+  private notes$    : Observable<NotesModel | null> = this.store.select( selectTempNote );
+  private notesSubs : Subscription;
+  public notes      : NotesModel | null;
   public title      : string       = '';
   public text       : string       = '';
 
-  private users$    : Observable<UserModels> = this.store.select(selectUser)
+  private users$    : Observable<UserModels> = this.store.select( selectUser )
   private usersSubs : Subscription;
   private user      : UserModels;
 
 
   constructor( private store          : Store<MainState>, 
-               private router         : Router,
-               private firebaseService: FirebaseService ) { }
+               private router         : Router ) { }
 
   ngOnInit(): void {
     this.usersSubs = this.users$.subscribe( user => this.user = user);
@@ -44,61 +43,66 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     deleteNote(){
 
     Swal.fire({
-      title: 'Estas Seguro?',
-      text: "Tu nota creada se borrara!",
-      icon: 'warning',
-      showCancelButton: true,
+      title             : 'Estas Seguro?',
+      text              : "Tu nota creada se borrara!",
+      icon              : 'warning',
+      showCancelButton  : true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Salir'
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        // Swal.fire('Saved!', '', 'success');
-        this.store.dispatch(deleteNoteTemp())
-        this.router.navigate(['/home']);
-      } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info');
+      cancelButtonColor : '#d33',
+      confirmButtonText : 'Salir'
+    }).then(( result ) => {
+
+      if ( result.isConfirmed ) {
+
+        this.store.dispatch( deleteNoteTemp() )
+        this.router.navigate( ['/home'] );
+      } else if ( result.isDenied ) {
+        Swal.fire( 'Changes are not saved', '', 'info');
       }
     });
   };
 
   save(){
-    if (this.user)  this.saveNoteFirebase();
+    if ( this.user )  this.saveNoteFirebase();
     else this.saveNoteLocalStorage();
-  }
+  };
   
   saveNoteLocalStorage(){
-    console.log(this.notes);
 
-    if (!this.notes) return;
-    let notes = localStorage.getItem('note');
-    if(notes){
+    if ( !this.notes ) return;
+
+    let notes = localStorage.getItem( 'note' );
+
+    if( notes ){
       let notesObject: StorageNotes =  JSON.parse(notes);
-      let check: boolean = false;
-        notesObject.notes.forEach( (note, index) => {
-          if (note.id === this.notes.id) {
-            notesObject.notes.splice(index, 1, this.notes)
+      let check      : boolean      = false;
+
+        notesObject.notes.forEach( ( note, index ) => {
+
+          if ( note.id === this.notes.id ) {
+            notesObject.notes.splice( index, 1, this.notes )
             check = true;
-          }
+          };
         })
-       if(!check) {
-        notesObject.notes.push(this.notes ? this.notes : {} as NotesModel);
+
+       if( !check ) {
+        notesObject.notes.push( this.notes ? this.notes : {} as NotesModel );
       }
-      localStorage.setItem('note', JSON.stringify(notesObject));
-      this.store.dispatch(deleteNoteTemp());
-      this.router.navigate(['/home']);
+      localStorage.setItem( 'note', JSON.stringify( notesObject ) );
+      this.store.dispatch( deleteNoteTemp() );
+      this.router.navigate( ['/home'] );
     } else {
+      
       let newNotesStorage = new StorageNotes();
-      newNotesStorage.notes.push( this.notes ? this.notes : {} as NotesModel)
-      localStorage.setItem('note', JSON.stringify(newNotesStorage))
-      this.store.dispatch(deleteNoteTemp());
-      this.router.navigate(['/home']);
+      newNotesStorage.notes.push( this.notes ? this.notes : {} as NotesModel )
+      localStorage.setItem( 'note', JSON.stringify( newNotesStorage ) )
+      this.store.dispatch( deleteNoteTemp() );
+      this.router.navigate( ['/home'] );
     }
   };
 
   saveNoteFirebase(){
-    this.store.dispatch(setAllNotesData({ note:this.notes }))  
+    this.store.dispatch(setAllNotesData({ note: this.notes }));  
   };
 
 
