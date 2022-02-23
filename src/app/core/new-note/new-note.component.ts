@@ -36,7 +36,7 @@ export class NewNoteComponent implements OnInit, OnDestroy {
 
     this.store.dispatch( loadingstop() )
   }
-  
+
 
   ngOnInit(){
     this.usersSubs = this.users$.subscribe( user => this.user = user);
@@ -46,7 +46,7 @@ export class NewNoteComponent implements OnInit, OnDestroy {
         this.text  = note.text;
         this.title = note.title;
         this.id    = note.id;
-        this.owner = this.user.id;
+        this.owner = this.user ? this.user.id: '';
       }
     })
   };

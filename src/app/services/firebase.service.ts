@@ -51,7 +51,7 @@ export class FirebaseService {
   statusSession(){
     const auth = getAuth();
   onAuthStateChanged( auth, ( user ) => {
-    
+
     if (user) this.store.dispatch( getUserData({ id: user.uid }))
      else {
       console.log('NO HAY USUARIO');
@@ -65,11 +65,7 @@ export class FirebaseService {
   };
 
   setMultipleNotes( notes: NotesModel[], id: string ){
-
-    notes.forEach(( note ) => {
-      
-      this.setNotes(note);
-    });
+    notes.forEach(( note ) => this.setNotes({...note, owner: id}));
   };
 
   async getAllNotes( ){

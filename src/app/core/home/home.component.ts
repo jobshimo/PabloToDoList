@@ -40,15 +40,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.usersSubs = this.users$.subscribe( user => {
-      if (!user) this.getNote();
-
-      else{
-        this.notesSubs  = this.notes$.subscribe( notes => {
-          
-          this.allNotes = this.filterNotes( notes, user.id );  
-        });
-        this.store.dispatch( getAllNotes() );
+      switch (true) {
+        case !user:
+          this.getNote();
+          break;
+        case !!user:
+          this.notesSubs  = this.notes$.subscribe( notes => {
+          this.allNotes = this.filterNotes( notes, user.id );
+          });
+          this.store.dispatch( getAllNotes() );
+          break;
       }
+      // if (!user) this.getNote();
+      // else{
+      //   this.notesSubs  = this.notes$.subscribe( notes => {
+      //    this.allNotes = this.filterNotes( notes, user.id );
+      //   });
+      //   this.store.dispatch( getAllNotes() );
+      // }
     })
   };
 
@@ -58,16 +67,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     let noteFilter: NotesModel[] = [];
 
     notes.forEach(( note ) => {
-
-      if (note.owner === id) {
-
-        noteFilter.push( note );
-      };
+      if (note.owner === id)    noteFilter.push( note )
     });
       return noteFilter;
   };
 
-  getNote(){
+  getNote(): void {
     let notes = localStorage.getItem( 'note' );
     let objectNote: StorageNotes = JSON.parse(notes ? notes : '{}');
     this.allNotes = objectNote.notes;
