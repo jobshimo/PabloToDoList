@@ -89,10 +89,10 @@ export class UserEffects {
   this.actions$.pipe(
     ofType( setUserDataSuccess ),
     map( ({ id }) =>{
-      
+      this.router.navigate(['/home']);
       let notes                    = localStorage.getItem( 'note' );
       let objectNote: StorageNotes = JSON.parse( notes ? notes : '{}' );
-    
+
       if ( notes ) {
         this.firebaseService.setMultipleNotes( objectNote.notes, id );
         localStorage.removeItem( 'note' );
