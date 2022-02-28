@@ -17,16 +17,20 @@ export enum Types {
   SET_ALL_NOTES_DATA         = '[Notes State] Set All Notes',
   SET_ALL_NOTES_DATA_SUCCESS = '[Notes State] Set All Notes: Success',
   SET_ALL_NOTES_DATA_ERROR   = '[Notes State] Set All Notes: Error',
-  // ADD_TEMP_TITLE        = '[Notes State] Temp Title Add'
+
+  DELETE_NOTE                = '[Notes State] Delete Note',
+  DELETE_NOTE_SUCCESS        = '[Notes State] Delete Note: Success',
+  DELETE_NOTE_ERROR          = '[Notes State] Delete Note: Error',
 };
 
+  //GO HOME
   export const goHome                 = createAction( Types.GO_HOME );
 
   // NOTE TEMPORAL
   export const addNoteTemp            = createAction( Types.ADD_TEMP_NOTE, props<{ note: NotesModel }>() );
   export const deleteNoteTemp         = createAction( Types.DELETE_TEMP_NOTE );
     
-  //NOTES//    
+  // GET NOTES//    
   export const getAllNotes            = createAction( Types.GET_ALL_NOTES );
   export const getAllNotesSuccess     = createAction( Types.GET_ALL_NOTES_SUCCESS, props<{ notes: NotesModel[] }>() );
   export const getAllNotesError       = createAction( Types.GET_ALL_NOTES_ERROR, props<{ error: any }>());
@@ -36,7 +40,8 @@ export enum Types {
   export const setAllNotesDataSuccess = createAction( Types.SET_ALL_NOTES_DATA_SUCCESS );
   export const setAllNotesDataError   = createAction( Types.SET_ALL_NOTES_DATA_ERROR, props<{ error: any }>());
 
-  //title//    
-  // export const addTittleTemp       = createAction( Types.ADD_TEMP_TITLE, props<{ title: string }>())
-
+  //DELETE NOTE//
+  export const deleteNote             = createAction( Types.DELETE_NOTE, props<{ note: NotesModel }>());
+  export const deleteNoteSuccess      = createAction( Types.DELETE_NOTE_SUCCESS );
+  export const deleteNoteError        = createAction( Types.DELETE_NOTE_ERROR, props<{ error: any }>());
 

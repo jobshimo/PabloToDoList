@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-light bg-light nav-custom">
     <div class="container-fluid">
         <button class="btn  main-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-          <svg-icon src="../../../assets/icons/bars-solid.svg" [svgStyle]="{ 'width.px':22 }"></svg-icon>
+          <svg-icon src="../../../assets/icons/1486504328-bullet-list-menu-lines-points-items-options_81334.svg" [svgStyle]="{ 'width.px':32 }" style="position: relative; right: 10px;"></svg-icon>
       </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -13,10 +13,9 @@
           </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li> <hr class="dropdown-divider"> </li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        <li> <hr class="dropdown-divider"> </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
@@ -25,20 +24,20 @@
             <form class="d-flex">
                 <input type="text" name="buscar" placeholder="Buscar..." class="search-input" id="txt-buscar-tag" style="width: 150px; right: 4px;position: relative;" value="">
                 <button type="submit" class="btn-search">
-                     <!-- <span class="hidden-text"> -->
                         <svg-icon src="../../../assets/icons/search-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
-                     <!-- </span> -->
                 </button>
             </form>
             <div class="dropstart">
                 <svg-icon data-bs-toggle="dropdown" aria-expanded="false" class="ms-3" src="../../../assets/icons/ellipsis-v-solid.svg" [svgStyle]="{ 'width.px':10 }"></svg-icon>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a (click)="logout()" routerLink="/login" class="dropdown-item" href="#">Logout</a>
+                        <a (click)="logout()" routerLink="/login" class="dropdown-item" href="#" style="position: relative; left: 5px; font-size: 20px;">Logout
+                            <svg-icon  src="../../../assets/icons/4115235-exit-logout-sign-out_114030.svg" [svgStyle]  ="{ 'width.px': 35 }" style="position: relative; left: 10px;"  ></svg-icon>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -46,34 +45,31 @@
     </div>
 </nav>
 
-
-
-
-
-<div class="offcanvas offcanvas-start" style="width: 220px; background: green;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" style="width: 220px; background:rgba(5, 131, 100, 0.274)" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        Menu
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel"></h5>
+      <svg-icon src="../../../assets/icons/settings_options_preferences_gears_icon_124617.svg" [svgStyle]="{ 'width.px': 48 }" style="position: relative; right: 62px;"></svg-icon>
+      <button type="button" class="btn-close  text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <!-- <div>
-            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div> -->
-        <div class="dropdown mt-2">
-            <button data-bs-dismiss="offcanvas" class="btn btn-primary" style="border-radius: 20px; background: black; position: relative; top: 120px;" type="button">
-                <a class="nav-link" routerLink="auth">Login</a>
-       </button>
-       <button data-bs-dismiss="offcanvas"  class="btn btn-primary" style="border-radius: 20px; background: black; top: 190px; position: relative;" type="button">
-        <a class="nav-link" routerLink="auth/register">Register</a>
-      </button>
-      <button data-bs-dismiss="offcanvas"  class="btn btn-primary" style="border-radius: 20px; background: black; top: 260px; position: relative;" type="button">
-        <a class="nav-link" routerLink="/home">Home</a>
-      </button>
-            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul> -->
-        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item active" class="nav-link" routerLink="auth" data-bs-dismiss="offcanvas">Login
+                <svg-icon src="../../../assets/icons/padlock_78356.svg" [svgStyle]="{ 'width.px': 36 }" style="position: relative; left: 35px;"></svg-icon>
+              </a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" class="nav-link" routerLink="auth/register" data-bs-dismiss="offcanvas">Register
+                <svg-icon src="../../../assets/icons/log_icon_155172.svg" [svgStyle]="{ 'width.px': 36 }" style="position: relative; left: 16px;"></svg-icon>
+              </a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" class="nav-link" routerLink="/home" data-bs-dismiss="offcanvas">Home
+                <svg-icon src="../../../assets/icons/1486505259-estate-home-house-building-property-real_81428.svg" [svgStyle]="{ 'width.px': 36 }" style="position: relative; left: 34px;"></svg-icon>
+              </a>
+            </li>
+            </ul>
+          </div>
     </div>
-</div>
+  </div>

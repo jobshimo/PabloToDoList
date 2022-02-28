@@ -34,8 +34,8 @@ export class NewNoteComponent implements OnInit, OnDestroy {
 
   constructor( private store: Store<AppState>) {
 
-    this.store.dispatch( loadingstop() )
-  }
+    this.store.dispatch( loadingstop() );
+  };
   
 
   ngOnInit(){
@@ -46,14 +46,14 @@ export class NewNoteComponent implements OnInit, OnDestroy {
         this.text  = note.text;
         this.title = note.title;
         this.id    = note.id;
-        this.owner = this.user.id;
+        this.owner = this.user ? this.user.id : '';
       }
     })
   };
 
   openClose(){
     this.open = !this.open;
-  }
+  };
 
   saveTempNote(){
     let newNote: NotesModel = new Notes(this.title,this.text, this.id ? this.id : new Date().getTime().toString() , new Date(), '', [], this.owner);
@@ -61,7 +61,7 @@ export class NewNoteComponent implements OnInit, OnDestroy {
   };
 
   ngOnDestroy(): void {
-    this.nostesSubs?.unsubscribe();
     this.usersSubs?.unsubscribe();
+    this.nostesSubs?.unsubscribe();
   };
 };
