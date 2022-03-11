@@ -1,22 +1,20 @@
 <nav class="navbar navbar-expand navbar-light bg-light nav-custom">
     <div class="container-fluid">
         <button (click)="saveNote()" class="btn  main-button" type="button">
-        <svg-icon src="../../../assets/icons/tick_check_mark_icon_153886.svg" [svgStyle] = "{ 'width.px': 35 }" style="position: relative; right: 10px; bottom: 7px;"></svg-icon>
-    </button>
+             <svg-icon src="../../../assets/icons/tick_check_mark_icon_153886.svg" [svgStyle] = "{ 'width.px': 37 }" style="position: relative; right: 10px; bottom: 5px;"></svg-icon>
+        </button>
         <button (click)="editNote()" class="btn  main-button" type="button">
-      <svg-icon  src="../../../assets/icons/delete_unapprove_discard_remove_x_red_icon-icons.com_55984.svg" [svgStyle]  = "{ 'width.px': 36 }" style="position: relative; right: 5px; bottom: 1px;"></svg-icon>
-  </button>
-  <button (click)="deleteNote()" class="btn  main-button" type="button">
-    <svg-icon  src="../../../assets/icons/1486504830-delete-dustbin-empty-recycle-recycling-remove-trash_81361.svg" [svgStyle]   = "{ 'width.px': 34 }" style="position: relative; left: 2px;"></svg-icon>
-</button>
+             <svg-icon  src="../../../assets/icons/delete_unapprove_discard_remove_x_red_icon-icons.com_55984.svg" [svgStyle]  = "{ 'width.px': 37 }" style="position: relative; right: 5px; bottom: 1px;"></svg-icon>
+        </button>
+        <button (click)="deleteNote()" class="btn  main-button" type="button">
+             <svg-icon  src="../../../assets/icons/1486504830-delete-dustbin-empty-recycle-recycling-remove-trash_81361.svg" [svgStyle]   = "{ 'width.px': 35 }" style="position: relative; left: 2px;"></svg-icon>
+        </button>
   
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <form class="d-flex">
                 <svg-icon src="../../../assets/icons/folderyellow_92963.svg" [svgStyle]="{ 'width.px': 30 }" style="position: relative; right: 10px;"></svg-icon>
-
             </form>
             <div class="dropstart">
                 <svg-icon data-bs-toggle="dropdown" aria-expanded="false" class="ms-3" src="../../../assets/icons/Menu_2-80_icon-icons.com_57301.svg" [svgStyle]="{ 'width.px': 27 }"></svg-icon>
@@ -28,8 +26,6 @@
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </div>
-
-
         </div>
     </div>
 </nav>

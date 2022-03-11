@@ -1,11 +1,11 @@
 //ANGULAR//
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { collection, doc, Firestore, getDocs, getFirestore, setDoc } from '@angular/fire/firestore';
 //FIREBASE//
 import { onAuthStateChanged } from 'firebase/auth';
 import { deleteDoc, getDoc, query } from 'firebase/firestore';
 import { DocumentData } from 'rxfire/firestore/interfaces';
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { collection, doc, Firestore, getDocs, getFirestore, setDoc } from '@angular/fire/firestore';
 //NGRX//
 import { Store } from '@ngrx/store';
 import { CredentialsModels } from '../models/credentials.models';
@@ -48,7 +48,7 @@ export class FirebaseService {
     return setDoc( newUser, { ...user }, { merge: true });
   };
 
-  //FUNCION DE FIREBASE PARAA TRAER LA DATA DE USUARIOS//
+  //FUNCION DE FIREBASE PARA TRAER LA DATA DE USUARIOS//
   async getUserData( id: string ): Promise<DocumentData> {
     const docSnap = await getDoc(doc(getFirestore(), "users", id));
     return docSnap.exists() ? docSnap.data() : null;
@@ -65,7 +65,7 @@ export class FirebaseService {
   });
   };
 
-  //FUNCION DE FIREBASE PARA SETEAR KIS DOCUMENTOS//
+  //FUNCION DE FIREBASE PARA SETEAR LOS DOCUMENTOS//
   setNotes( notes: NotesModel ){
     const newNotes = doc( getFirestore(), 'notes', notes.id );
     return setDoc( newNotes, { ...notes }, { merge: true });
@@ -84,14 +84,14 @@ export class FirebaseService {
     const queryCollection = await getDocs(q);
      queryCollection.forEach( doc => {
         let  {
-          title, text, id, dateCreate, dateFinish, folder, owner } = doc.data();
-       documents.push(new Notes(title, text, id, dateCreate, dateFinish, folder, owner));
+          title, text, id, dateCreate, dateFinish, folder, owner, favorite } = doc.data();
+          documents.push(new Notes( title, text, id, dateCreate, dateFinish, folder, owner, favorite ));
       });
     return documents;
   };
 
   //FUNCION DE FIREBASE PARA ELIMINAR DOCUMENTOS//
   async deleteNote( note: NotesModel ){
-    await deleteDoc( doc(getFirestore(), "notes", note.id ));
+    await deleteDoc( doc( getFirestore(), "notes", note.id ));
   };
 };

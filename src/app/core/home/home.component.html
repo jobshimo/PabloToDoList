@@ -1,27 +1,37 @@
-<ng-container *ngFor="let note of allNotes">
 
+<!-- <div class="container">
+    <h1>Listado de Notas</h1>
+    <div class="form-group">
+        <input 
+        type="text"
+        class="form-control"
+        placeholder="Buscar..."
+        [(ngModel)]="notesFilter"
+        name="notesFIlter">
+    </div>
+    <svg-icon src="../../../assets/icons/loupe_78347.svg" [svgStyle]="{ 'width.px': 45 }" style="position: absolute; top: 97px; left: 290px;"></svg-icon>
+</div> -->
 
+<!-- <ng-container *ngFor="let note of allNotes | filter:notesFilter"> -->
+<ng-container *ngFor="let note of filterSearch(allNotes)">
     <div (click)="editNote(note)" class="create">
         <div class="date ms-2">
-            <div >{{note.dateCreate['seconds'] | date}}</div>
+            <div >{{note.dateCreate['seconds'] * 1000  | date: 'd/M/yy'}}</div>
         </div>
         <div class="ms-2">
 
-            <div>
+            <div style="text-align: center;">
                 {{note.title}}
             </div>
-            <div>
+            <div style="text-align: center; font-family: serif; font-size: 17px;">
                 {{note.text}}
             </div>
         </div>
     </div>
-
-
 </ng-container>
 
 
 
-
-<button routerLink="/newNote" class="btn btn-primary button-plus">
-  <svg-icon src="../../../assets/icons/plus-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
+<button routerLink="/newNote" class="btn  button-plus">
+  <svg-icon src="../../../assets/icons/1486485557-add-create-new-more-plus_81188.svg" [svgStyle]="{ 'width.px':40 }"></svg-icon>
 </button>

@@ -15,3 +15,9 @@ export const selectNotes = createSelector(
   selectNotesState,
   ( state: NoteState ) => state.notes
 );
+
+export const selectSearch = createSelector(
+  selectNotesState,
+  ( state: NoteState ) => state.search
+);
+

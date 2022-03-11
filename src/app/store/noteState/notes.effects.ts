@@ -15,7 +15,6 @@ export class NotesEffects {
                  private firebaseService: FirebaseService,
                  private router         : Router ){};
 
-
     getNotes$ = createEffect( () =>
     this.actions$.pipe(
       ofType( getAllNotes ),

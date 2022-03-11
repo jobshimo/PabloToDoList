@@ -1,34 +1,31 @@
 <nav class="navbar navbar-expand navbar-light bg-light nav-custom">
-    <div class="container-fluid">
+   <div class="container-fluid">
         <button class="btn  main-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-          <svg-icon src="../../../assets/icons/1486504328-bullet-list-menu-lines-points-items-options_81334.svg" [svgStyle]="{ 'width.px':32 }" style="position: relative; right: 10px;"></svg-icon>
-      </button>
+          <svg-icon src="../../../assets/icons/1486504328-bullet-list-menu-lines-points-items-options_81334.svg" [svgStyle]="{ 'width.px':34 }" style="position: relative; right: 10px;"></svg-icon>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Notas
-          </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="position: relative; top: 4px;">Notas</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li> <hr class="dropdown-divider"> </li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li> <hr class="dropdown-divider"> </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-
+                  </ul>
+              </li>
             </ul>
             <form class="d-flex">
-                <input type="text" name="buscar" placeholder="Buscar..." class="search-input" id="txt-buscar-tag" style="width: 150px; right: 4px;position: relative;" value="">
-                <button type="submit" class="btn-search">
-                        <svg-icon src="../../../assets/icons/search-solid.svg" [svgStyle]="{ 'width.px':20 }"></svg-icon>
+                <input [(ngModel)]="textToSearch" (keyup)="search()" type="text" name="buscar" placeholder="Buscar..." class="search-input" id="txt-buscar-tag" style="width: 160px; left: 8px; position: relative;">
+                <button type="submit" class="btn-search" style="position: relative; left: 10px">
+                        <svg-icon src="../../../assets/icons/loupe_78347.svg" [svgStyle]="{ 'width.px': 30 }"></svg-icon>
                 </button>
             </form>
             <div class="dropstart">
-                <svg-icon data-bs-toggle="dropdown" aria-expanded="false" class="ms-3" src="../../../assets/icons/ellipsis-v-solid.svg" [svgStyle]="{ 'width.px':10 }"></svg-icon>
+              <svg-icon data-bs-toggle="dropdown" aria-expanded="false" class="ms-3" src="../../../assets/icons/Menu_2-80_icon-icons.com_57301.svg" [svgStyle]="{ 'width.px': 30 }"></svg-icon>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -42,7 +39,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+   </div>
 </nav>
 
 <div class="offcanvas offcanvas-start" style="width: 220px; background:rgba(5, 131, 100, 0.274)" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -68,7 +65,7 @@
               <li><a class="dropdown-item" class="nav-link" routerLink="/home" data-bs-dismiss="offcanvas">Home
                 <svg-icon src="../../../assets/icons/1486505259-estate-home-house-building-property-real_81428.svg" [svgStyle]="{ 'width.px': 36 }" style="position: relative; left: 34px;"></svg-icon>
               </a>
-            </li>
+</li>
             </ul>
           </div>
     </div>

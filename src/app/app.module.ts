@@ -25,6 +25,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AppEffects } from './store/appState/app.effects';
 import { NotesEffects } from './store/noteState/notes.effects';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NotesEffects } from './store/noteState/notes.effects';
     NavbarComponent,
     HomeComponent,
     NewNoteComponent,
-    NavbarnotesComponent
+    NavbarnotesComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

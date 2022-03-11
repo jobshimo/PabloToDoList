@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState, NoteState } from './notes.state';
-import { addNoteTemp, deleteNoteTemp, getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, setAllNotesDataSuccess, setAllNotesDataError, deleteNote, deleteNoteSuccess, deleteNoteError } from './notes.actions';
+import { addNoteTemp, deleteNoteTemp, getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, setAllNotesDataSuccess, setAllNotesDataError, deleteNote, deleteNoteSuccess, deleteNoteError, searchFilterNote, } from './notes.actions';
 
 
 
@@ -9,7 +9,6 @@ export const NotesStateReducer = createReducer(
     initialState,
 
     //NOTE TEMP//
-
     on( addNoteTemp, ( state: NoteState, {note} ) => ({
         ...state,
         noteTemp: note
@@ -19,8 +18,7 @@ export const NotesStateReducer = createReducer(
         noteTemp: null
     })),
 
-    //NOTES//
-
+    //GET NOTES//
     on( getAllNotes, ( state: NoteState ) => ({
         ...state,
         loading: true
@@ -39,7 +37,6 @@ export const NotesStateReducer = createReducer(
     })),
 
     //SET NOTES DATA//
-
     on( setAllNotesData, ( state: NoteState, { note } ) => ({
         ...state,
         loading: true,
@@ -60,12 +57,13 @@ export const NotesStateReducer = createReducer(
     //DELETE NOTE//
     on( deleteNote, ( state: NoteState, { note } ) => ({
         ...state,
-        loading: false,
-        noteTemp: note
+        loading: true,
+        noteTemp:note
     })),
     on( deleteNoteSuccess, ( state: NoteState ) => ({
         ...state,
-        loading: true,
+        loading: false,
+        noteTemp: null
     })),
 
     on( deleteNoteError, ( state: NoteState, { error } ) => ({
@@ -73,6 +71,25 @@ export const NotesStateReducer = createReducer(
         loading: false,
         error
     })),
+
+    //SEARCH FILTER NOTE
+    on( searchFilterNote, ( state: NoteState, { filter } ) => ({
+        ...state,
+        // loading: false,
+        search : filter
+        
+    })),
+
+    // on( searchFilterNoteSuccess, ( state: NoteState, { notes } ) => ({
+    //     ...state,
+    //     loading: true,
+    // })),
+
+    // on( searchFilterNoteError, ( state: NoteState, { error } ) => ({
+    //     ...state,
+    //     loading: false,
+    //     error
+    // })),
 );
 
 

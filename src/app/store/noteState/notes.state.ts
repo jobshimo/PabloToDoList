@@ -7,11 +7,13 @@ export interface NoteState {
     loading  : boolean,
     error    : any,
     notes    : NotesModel[],
+    search   : string | null
 };
 
 export const initialState: NoteState = {
     noteTemp  : null,
     loading   : false,
     notes     : [],
-    error     : null
+    error     : null,
+    search    : null
 };

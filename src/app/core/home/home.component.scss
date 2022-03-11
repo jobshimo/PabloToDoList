@@ -1,19 +1,48 @@
 .button-plus {
-    border-radius: 50%;
     position: absolute;
-    right: 30px;
-    bottom: 30px;
-    background-color: green !important;
+    right: 28px;
+    bottom: 60px;
 }
 
 .create {
-    border: 2px solid black;
+    border: 2px solid;
     margin: 12px;
     width: 95%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
+    border-radius: 30px;
+    border-color: green;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: flex-start;
+}
+
+.form-control {
+    display: block;
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 14px;
+    position: relative;
+    left: 87px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.h1, h1 {
+    font-size: calc(1.375rem + 1.5vw);
+    text-align: center;
+    font-style: italic;
+    font-family: serif;
 }

@@ -70,15 +70,22 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
 
   //FUNCION PARA GUARDAR NOTA EN EL LOCALSTORAGE O EN FIREBEASE//
   saveNote(){
+    switch (true) {
+      case !this.user:
+        this.saveNoteLocalStorage();
+        break;
+    
+      case !!this.user:
+        this.saveNoteFirebase();
+        break;
+    };
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'Cambios guardados',
+      title: 'Nota guardada',
       showConfirmButton: false,
       timer: 2000
     })
-    if ( this.user )  this.saveNoteFirebase();
-    else this.saveNoteLocalStorage();
   };
 
   //FUNCION PARA GUARDAR LA NOTA EN EL LOCAL//
@@ -86,30 +93,33 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     if ( !this.notes ) return;
     let notes = localStorage.getItem( 'note' );
 
-    if( notes ){
-      let notesObject: StorageNotes =  JSON.parse(notes);
-      let check      : boolean      = false;
+    switch ( true ) {
+      case !notes:
+        let newNotesStorage = new StorageNotes();
+        newNotesStorage.notes.push( this.notes ? this.notes : {} as NotesModel );
+        localStorage.setItem( 'note', JSON.stringify( newNotesStorage ) );
+        this.store.dispatch( deleteNoteTemp() );
+        this.router.navigate( ['/home'] );
+        break;
+    
+      case !!notes:
+        let notesObject: StorageNotes = JSON.parse( notes );
+        let check      : boolean      = false;
+
         notesObject.notes.forEach( ( note, index ) => {
           if ( note.id === this.notes.id ) {
-            notesObject.notes.splice( index, 1, this.notes )
+            notesObject.notes.splice( index, 1, this.notes );
             check = true;
           };
         })
-
        if( !check ) {
         notesObject.notes.push( this.notes ? this.notes : {} as NotesModel );
       }
-      localStorage.setItem( 'note', JSON.stringify( notesObject ) );
-      this.store.dispatch( deleteNoteTemp() );
-      this.router.navigate( ['/home'] );
-    } 
-    else {     
-      let newNotesStorage = new StorageNotes();
-      newNotesStorage.notes.push( this.notes ? this.notes : {} as NotesModel )
-      localStorage.setItem( 'note', JSON.stringify( newNotesStorage ) )
-      this.store.dispatch( deleteNoteTemp() );
-      this.router.navigate( ['/home'] );
-    }
+       localStorage.setItem( 'note', JSON.stringify( notesObject ) );
+       this.store.dispatch( deleteNoteTemp() );
+       this.router.navigate( ['/home'] );
+        break;
+    };
   };
 
   //FUNCION PARA GUARDAR LA NOTA EN FIREBASE CON NGRX//
@@ -119,37 +129,43 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
 
   //FUNCION PARA ELIMINAR LA NOTA DEL LOCAL O DE FIREBASE
   deleteNote(){
+    switch (true) {
+      case !this.user:
+        this.deleteNoteLocalStorage();
+        break;
+    
+      case !!this.user:
+        this.deleteNoteFirebase( this.notes );
+        break;
+    };
     Swal.fire({
       position: 'top-end',
       icon: 'success',
       title: 'Nota borrada',
       showConfirmButton: false,
-      timer: 2000
+      timer: 3000
     })
-    if ( this.user )  this.deleteNoteFirebase( this.notes );
-    else this.deleteNoteLocalStorage();
   };
   
   //FUNCION PARA BORRAR NOTA EN EL LOCAL//
-  deleteNoteLocalStorage(){  
+  deleteNoteLocalStorage(){ 
     let notes = localStorage.getItem( 'note' );
     let notesObject: StorageNotes =  JSON.parse( notes );
     notesObject.notes.forEach( ( note, index ) => {
-
       if ( note.id === this.notes.id ) {
         notesObject.notes.splice( index, 1 )
       };
     })
     localStorage.setItem( 'note', JSON.stringify( notesObject ) );
+    this.store.dispatch( deleteNoteTemp() );
     this.router.navigate( ['/home'] );
-
     Swal.fire({
       position: 'top-end',
       icon: 'success',
       title: 'Nota Borrada',
       showConfirmButton: false,
       timer: 2000
-    })
+    });
   };
 
   //FUNCION PARA ELIMINAR LA NOTA DE FIREBASE

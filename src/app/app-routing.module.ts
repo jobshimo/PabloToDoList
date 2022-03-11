@@ -6,7 +6,6 @@ import { NewNoteComponent } from './core/new-note/new-note.component';
 
 const routes: Routes = [
 
-
   {
     path        : 'home',
     component   : HomeComponent,
@@ -16,8 +15,8 @@ const routes: Routes = [
     component   : NewNoteComponent,
   },
   {
-    path      : 'auth',
-   loadChildren: ()=> import ('./auth/auth.module').then( m => m.AuthModule)
+    path        : 'auth',
+   loadChildren : () => import( './auth/auth.module' ).then( m => m.AuthModule )
   },
   {
     path        : '**',
@@ -29,6 +28,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
   ],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

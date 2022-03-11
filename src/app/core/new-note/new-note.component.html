@@ -1,40 +1,43 @@
 <div [class.div-prSmall]="!open" [class.div-prLarge]="open" class="">
 
-    <input class="title" (keyup)="saveTempNote()" name="title" [(ngModel)]="title" type="text" placeholder="Titulo....">
+    <input class="title" (keyup)="saveTempNote()" name="title" [(ngModel)]="title" type="text" placeholder="Titulo...."> 
     <textarea class="text-box" (keyup)="saveTempNote()" name="text" [(ngModel)]="text" name="nota" cols="30" rows="10" placeholder="texto..."></textarea>
 
     <button (click)="openClose()" [class.button-arrowUp]="!open" [class.button-arrowDown]="open" class="btn  main-button" type="button">
-
       <svg-icon src="../../../assets/icons/caret-down-solid.svg" [svgStyle]="{ 'width.px':21 }"></svg-icon>
-</button>
-
+    </button>
 </div>
 
-
-<div *ngIf="!open" class="div-footer">
-
+<div  *ngIf="!open" class="div-footer">
     <!-- Button trigger modal -->
     <button type="button" class="btn  button-folder" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Carpeta...
 </button>
-    <svg-icon class="button-star" src="../../../assets/icons/star-solid.svg" [svgStyle] = "{ 'width.px': 26 }"></svg-icon>
-    <svg-icon class="button-info" src="../../../assets/icons/circle-exclamation-solid.svg" [svgStyle] = "{ 'width.px': 26 }"></svg-icon>
-    <svg-icon class="button-clock" src="../../../assets/icons/clock-solid.svg" [svgStyle] = "{ 'width.px': 26 }"></svg-icon>
+<button   [class.button-starSelect]="select" [class.button-starNoSelect]="!select" class="btn" type="button">
+    <svg-icon (click)="addNoteFav()" src="../../../assets/icons/star-solid.svg" [svgStyle] = "{ 'width.px': 31 }" style="position: relative; right: 10px;"></svg-icon>
+</button>
+    
+    <svg-icon class="button-info" src="../../../assets/icons/circle-exclamation-solid.svg" [svgStyle] = "{ 'width.px': 30 }"></svg-icon>
+    <svg-icon class="button-clock" src="../../../assets/icons/alarm-clock_icon-icons.com_60726.svg" [svgStyle] = "{ 'width.px': 30 }" ></svg-icon>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Categorias</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    ...
+                <div class="modal-body"> 
+                        <li><a><svg-icon src="../../../assets/icons/folderyellow_92963.svg" [svgStyle]="{ 'width.px': 30 }" style="position: relative; "></svg-icon>Favoritos</a></li>
+                          <hr class="dropdown-divider">
+                          <li><a><svg-icon src="../../../assets/icons/folderyellow_92963.svg" [svgStyle]="{ 'width.px': 30 }" style="position: relative; "></svg-icon>Compras</a></li>
+                          <hr class="dropdown-divider"> 
+                          <li><a><svg-icon src="../../../assets/icons/folderyellow_92963.svg" [svgStyle]="{ 'width.px': 30 }" style="position: relative; "></svg-icon>Zapatos</a></li>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Entendido</button>
                 </div>
             </div>
         </div>

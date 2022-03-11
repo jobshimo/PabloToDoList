@@ -7,7 +7,7 @@ import { addNoteTemp, getAllNotes } from '../../store/noteState/notes.actions';
 import { loading } from 'src/app/store/appState/app.actions';
 import { selectUser } from 'src/app/auth/store/userState/user.selectors';
 import { MainState } from '../../main.reducer';
-import { selectNotes } from '../../store/noteState/notes.selectors';
+import { selectNotes, selectSearch } from '../../store/noteState/notes.selectors';
 //MODELOS//
 import { StorageNotes } from 'src/app/models/storageNotes.model';
 import { NotesModel } from '../../models/notes.models';
@@ -32,11 +32,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   public allNotes  : NotesModel[] = [];
 
 
+
+  public search$     : Observable<string> = this.store.select(selectSearch);
+  public searchSubs  : Subscription ;
+  public search      : string = '';
+  // public notesFilter = '';
+  
+  
   constructor( private store: Store<MainState>, private router: Router ) {
     this.store.dispatch( loading() );
    };
 
   ngOnInit() {
+    this.searchSubs = this.search$.subscribe( search => this.search = search);
     this.usersSubs = this.users$.subscribe( user => {
       switch ( true ) {
         case !user:
@@ -49,8 +57,29 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.store.dispatch( getAllNotes() );
           break;
       }
-    })
+    });
+   
 };
+
+  filterSearch(notes:NotesModel[]): NotesModel[]{
+     return notes.filter( note => {
+      switch (true) {
+        case (this.search === null):
+          return true;
+        case (note.text.toUpperCase().includes( this.search.toUpperCase() )):
+          return true;
+        case (note.title.toUpperCase().includes( this.search.toUpperCase() )):
+          return true;
+        default:
+          return false;
+      }
+      //  if(this.search === null) return true;  
+      //  else if (note.text.toUpperCase().includes( this.search.toUpperCase() ))  return true
+      //  else if (note.title.toUpperCase().includes( this.search.toUpperCase() )) return true
+      //  else return false;
+    })
+  };
+
 
   //FUNCION PARA FILTAR LAS NOTAS//
   filterNotes( notes: NotesModel[], id: string ): NotesModel[] {
