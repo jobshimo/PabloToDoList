@@ -3,8 +3,6 @@ import { initialState, NoteState } from './notes.state';
 import { addNoteTemp, deleteNoteTemp, getAllNotes, getAllNotesSuccess, getAllNotesError, setAllNotesData, setAllNotesDataSuccess, setAllNotesDataError, deleteNote, deleteNoteSuccess, deleteNoteError, searchFilterNote, } from './notes.actions';
 
 
-
-
 export const NotesStateReducer = createReducer(
     initialState,
 
@@ -79,17 +77,6 @@ export const NotesStateReducer = createReducer(
         search : filter
         
     })),
-
-    // on( searchFilterNoteSuccess, ( state: NoteState, { notes } ) => ({
-    //     ...state,
-    //     loading: true,
-    // })),
-
-    // on( searchFilterNoteError, ( state: NoteState, { error } ) => ({
-    //     ...state,
-    //     loading: false,
-    //     error
-    // })),
 );
 
 

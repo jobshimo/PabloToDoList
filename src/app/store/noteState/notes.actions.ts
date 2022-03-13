@@ -21,9 +21,7 @@ export enum Types {
   DELETE_NOTE_SUCCESS        = '[Notes State] Delete Note: Success',
   DELETE_NOTE_ERROR          = '[Notes State] Delete Note: Error',
 
-  SEARCH_FILTER_NOTE         = '[Notes State] Search Filter Note',
-  SEARCH_FILTER_NOTE_SUCCESS = '[Notes State] Search Filter Note: Success',
-  SEARCH_FILTER_NOTE_ERROR   = '[Notes State] Search Filter Note: Error'
+  SEARCH_FILTER_NOTE         = '[Notes State] Search Filter Note'
 };
 
   //GO HOME
@@ -50,5 +48,3 @@ export enum Types {
 
   //SEARCH FILTER NOTE//
   export const searchFilterNote        = createAction( Types.SEARCH_FILTER_NOTE, props<{ filter: string }>());
-  // export const searchFilterNoteSuccess = createAction( Types.SEARCH_FILTER_NOTE_SUCCESS, props<{ notes: NotesModel[] }>());
-  // export const searchFilterNoteError   = createAction( Types.SEARCH_FILTER_NOTE_ERROR, props<{ error: any }>());

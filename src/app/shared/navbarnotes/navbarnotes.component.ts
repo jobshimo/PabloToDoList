@@ -58,9 +58,8 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
       cancelButtonColor : '#d33',
       confirmButtonText : 'Salir'
     }).then(( result ) => {
-
-      if ( result.isConfirmed ) {
-        this.store.dispatch( deleteNoteTemp() )
+      if ( result.isConfirmed ) { 
+        this.store.dispatch( deleteNoteTemp() );
         this.router.navigate( ['/home'] );
       } else if ( result.isDenied ) {
         Swal.fire( 'Changes are not saved', '', 'info');
@@ -88,7 +87,7 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     })
   };
 
-  //FUNCION PARA GUARDAR LA NOTA EN EL LOCAL//
+  //FUNCION PARA GUARDAR/MODIFICAR LA NOTA EN EL LOCAL //
   saveNoteLocalStorage(){
     if ( !this.notes ) return;
     let notes = localStorage.getItem( 'note' );
@@ -127,24 +126,31 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     this.store.dispatch(setAllNotesData({ note: this.notes }));  
   };
 
-  //FUNCION PARA ELIMINAR LA NOTA DEL LOCAL O DE FIREBASE
+  //FUNCION PARA ELIMINAR LA NOTA DEL LOCAL O DE FIREBASE//
   deleteNote(){
-    switch (true) {
-      case !this.user:
-        this.deleteNoteLocalStorage();
-        break;
-    
-      case !!this.user:
-        this.deleteNoteFirebase( this.notes );
-        break;
-    };
     Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Nota borrada',
-      showConfirmButton: false,
-      timer: 3000
-    })
+      title             : 'Estas Seguro?',
+      text              : "La nota se borrara!",
+      icon              : 'question',
+      showCancelButton  : true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor : '#d33',
+      confirmButtonText : 'Borrar'
+    }).then(( result ) => {
+      if ( result.isConfirmed ) { 
+        switch (true) {
+          case !this.user:
+            this.deleteNoteLocalStorage();
+            break;
+        
+          case !!this.user:
+            this.deleteNoteFirebase( this.notes );
+            break;
+        }; 
+      } else if ( result.isDenied ) {
+        Swal.fire( 'Changes are not saved', '', 'info');
+      }
+    });
   };
   
   //FUNCION PARA BORRAR NOTA EN EL LOCAL//
@@ -159,13 +165,6 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     localStorage.setItem( 'note', JSON.stringify( notesObject ) );
     this.store.dispatch( deleteNoteTemp() );
     this.router.navigate( ['/home'] );
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Nota Borrada',
-      showConfirmButton: false,
-      timer: 2000
-    });
   };
 
   //FUNCION PARA ELIMINAR LA NOTA DE FIREBASE

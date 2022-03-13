@@ -24,19 +24,16 @@ import { Observable, Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
   public user      : UserModels;
-  private users$   : Observable<UserModels> = this.store.select(selectUser)
+  private users$   : Observable<UserModels> = this.store.select( selectUser )
   private usersSubs: Subscription;
 
-  private notes$   : Observable<NotesModel[]> = this.store.select(selectNotes);
+  private notes$   : Observable<NotesModel[]> = this.store.select( selectNotes );
   private notesSubs: Subscription;
   public allNotes  : NotesModel[] = [];
 
-
-
-  public search$     : Observable<string> = this.store.select(selectSearch);
-  public searchSubs  : Subscription ;
-  public search      : string = '';
-  // public notesFilter = '';
+  public search$   : Observable<string> = this.store.select( selectSearch );
+  public searchSubs: Subscription ;
+  public search    : string = '';
   
   
   constructor( private store: Store<MainState>, private router: Router ) {
@@ -45,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchSubs = this.search$.subscribe( search => this.search = search);
-    this.usersSubs = this.users$.subscribe( user => {
+    this.usersSubs  = this.users$.subscribe( user => {
       switch ( true ) {
         case !user:
           this.getNote();
@@ -57,10 +54,10 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.store.dispatch( getAllNotes() );
           break;
       }
-    });
-   
+    });  
 };
 
+  //FUNCION PARA FILTRAR POR PALABRAS LAS NOTAS
   filterSearch(notes:NotesModel[]): NotesModel[]{
      return notes.filter( note => {
       switch (true) {
@@ -72,14 +69,9 @@ export class HomeComponent implements OnInit, OnDestroy {
           return true;
         default:
           return false;
-      }
-      //  if(this.search === null) return true;  
-      //  else if (note.text.toUpperCase().includes( this.search.toUpperCase() ))  return true
-      //  else if (note.title.toUpperCase().includes( this.search.toUpperCase() )) return true
-      //  else return false;
-    })
+      };
+    });
   };
-
 
   //FUNCION PARA FILTAR LAS NOTAS//
   filterNotes( notes: NotesModel[], id: string ): NotesModel[] {
@@ -109,5 +101,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.usersSubs?.unsubscribe();
     this.notesSubs?.unsubscribe();
+    this.searchSubs?.unsubscribe();
   };
 };

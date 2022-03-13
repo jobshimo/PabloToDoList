@@ -32,7 +32,7 @@ export class NewNoteComponent implements OnInit, OnDestroy {
   title       : string        = '';
   id          : string | null = null;
   owner       : string | null = null;
-  favorite    : boolean = false;
+  favorite    : boolean       = false;
 
   public notes       : NotesModel | null;
   private notes$     : Observable<NotesModel | null> = this.store.select( selectTempNote );
@@ -90,8 +90,6 @@ export class NewNoteComponent implements OnInit, OnDestroy {
       confirmButtonText : `Sí, ${this.favorite? 'añadir!' : 'quitar!'}` ,
     }).then(( result ) => {
       if ( result.isConfirmed ) {
-        // this.store.dispatch( deleteNoteTemp() );
-        // this.router.navigate( ['/home'] );
         switch (true) {
           case !this.user:
             this.addNoteFavLocalStorage();  
