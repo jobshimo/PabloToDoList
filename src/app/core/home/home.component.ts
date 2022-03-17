@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public allNotes  : NotesModel[] = [];
 
   public search$   : Observable<string> = this.store.select( selectSearch );
-  public searchSubs: Subscription ;
+  public searchSubs: Subscription;
   public search    : string = '';
   
   
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });  
 };
 
-  //FUNCION PARA FILTRAR POR PALABRAS LAS NOTAS
+  //FUNCION PARA FILTRAR POR PALABRAS LAS NOTAS//
   filterSearch(notes:NotesModel[]): NotesModel[]{
      return notes.filter( note => {
       switch (true) {

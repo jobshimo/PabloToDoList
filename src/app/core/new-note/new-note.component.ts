@@ -66,11 +66,6 @@ export class NewNoteComponent implements OnInit, OnDestroy {
     this.open = !this.open;
   };
 
-  //FUNCION PARA CAMBIAR EL COLOR DE LA ESTRELLA
-  // selectStar(){
-  //   this.favorite = !this.favorite;
-  // };
-
   //FUNCION PARA GUARDAR LA NOTA TEMPORAL//
   saveTempNote(){
     let newNote: NotesModel = new Notes(this.title,this.text, this.id ? this.id : new Date().getTime().toString(), new Date(), '', [], this.owner, this.favorite );
@@ -119,9 +114,14 @@ export class NewNoteComponent implements OnInit, OnDestroy {
     notesObject.notes.forEach( ( note ) => {
       if ( note.favorite === false ) {
         note.favorite = true;
-      };
-    })
+        note.favorite = this.favorite;
+      } else if (note.favorite === true){
+        note.favorite = false;
+        note.favorite != this.favorite;
+      }
+    });
     localStorage.setItem( 'note', JSON.stringify( notesObject ) );
+    this.router.navigate(['/home']);
     this.store.dispatch( deleteNoteTemp() );
   };
 
