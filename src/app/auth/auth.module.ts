@@ -8,14 +8,11 @@ import { LoginComponent } from '../auth/login/login.component';
 import { RegisterComponent } from '../auth/register/register.component';
 //MODULOS//
 import { AuthRoutingModule } from './auth-routing.module';
-//NGRX
+//NGRX//
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/userState/user.effects';
 import { UserStateReducer } from '../auth/store/userState/user.reducer';
-
-
-
 
 
 @NgModule({
@@ -29,7 +26,7 @@ import { UserStateReducer } from '../auth/store/userState/user.reducer';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('userState', UserStateReducer),
+    StoreModule.forFeature( 'userState', UserStateReducer ),
     EffectsModule.forFeature([ UserEffects ]),
   ]
 })

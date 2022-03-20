@@ -138,7 +138,7 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
       confirmButtonText : 'Borrar'
     }).then(( result ) => {
       if ( result.isConfirmed ) { 
-        switch (true) {
+        switch ( true ) {
           case !this.user:
             this.deleteNoteLocalStorage();
             break;
@@ -167,8 +167,8 @@ export class NavbarnotesComponent implements OnInit, OnDestroy {
     this.router.navigate( ['/home'] );
   };
 
-  //FUNCION PARA ELIMINAR LA NOTA DE FIREBASE
-  deleteNoteFirebase(note: NotesModel){
+  //FUNCION PARA ELIMINAR LA NOTA DE FIREBASE//
+  deleteNoteFirebase( note: NotesModel ){
     this.store.dispatch( deleteNote( { note }));
     this.router.navigate( ['/home'] );
   };

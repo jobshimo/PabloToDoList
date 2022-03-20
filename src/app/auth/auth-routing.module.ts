@@ -6,12 +6,12 @@ import { RegisterComponent } from '../auth/register/register.component';
 const routes: Routes = [
 
   {
-    path     : '',
-    component: LoginComponent
-  },
-  {
-    path     : 'register',
-    component: RegisterComponent
+    path      : '',
+    component : LoginComponent
+  }, 
+  { 
+    path      : 'register',
+    component : RegisterComponent
   },
   {
     path      : '**',
@@ -20,7 +20,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forChild( routes )
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AuthRoutingModule { }

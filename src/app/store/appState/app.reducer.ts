@@ -16,10 +16,4 @@ export const AppStateReducer = createReducer(
         ...state, 
         loading: false
     }))
-
-    // on( changeNav, (state: AppState) => ({
-    //     ...state,
-    //     loading: !state.loading
-    // })),
-    
-)
+);

@@ -32,8 +32,8 @@ export class NavbarComponent implements OnInit {
     this.store.dispatch(logout());
   };
 
-  //FUNCION PARA REALIZAR LA BUSQUEDA DE CADA NOTA
+  //FUNCION PARA REALIZAR LA BUSQUEDA DE CADA NOTA//
   search(){
-    this.store.dispatch(searchFilterNote({ filter: this.textToSearch }));
+    this.store.dispatch( searchFilterNote({ filter: this.textToSearch }));
   };
 };

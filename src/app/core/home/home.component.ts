@@ -58,14 +58,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 };
 
   //FUNCION PARA FILTRAR POR PALABRAS LAS NOTAS//
-  filterSearch(notes:NotesModel[]): NotesModel[]{
+  filterSearch( notes: NotesModel[] ) : NotesModel[]{
      return notes.filter( note => {
-      switch (true) {
-        case (this.search === null):
+      switch ( true ) {
+        case ( this.search === null ):
           return true;
-        case (note.text.toUpperCase().includes( this.search.toUpperCase() )):
+        case ( note.text.toUpperCase().includes( this.search.toUpperCase() ) ):
           return true;
-        case (note.title.toUpperCase().includes( this.search.toUpperCase() )):
+        case ( note.title.toUpperCase().includes( this.search.toUpperCase() ) ):
           return true;
         default:
           return false;
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
 
   //FUNCION PARA FILTAR LAS NOTAS//
-  filterNotes( notes: NotesModel[], id: string ): NotesModel[] {
+  filterNotes( notes: NotesModel[], id: string ) : NotesModel[] {
     let noteFilter: NotesModel[] = [];
 
     notes.forEach(( note ) => {

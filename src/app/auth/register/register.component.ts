@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     let notes = localStorage.getItem('note');
     let objectNote: StorageNotes = JSON.parse(notes ? notes : '{}');
 
-    if (notes) {
+    if ( notes ) {
 
       Swal.fire(
         'Hemos Detectado Notas',

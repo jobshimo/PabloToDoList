@@ -56,6 +56,8 @@ import { FilterPipe } from './filter.pipe';
     provideFirestore(() => getFirestore()),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

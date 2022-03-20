@@ -44,7 +44,7 @@ export class NotesEffects {
       ofType( setAllNotesDataSuccess, setAllNotesDataError ),
       map(() => { 
        this.router.navigate(['/home']);
-       return goHome()
+       return goHome();
       }
      ),
     ),

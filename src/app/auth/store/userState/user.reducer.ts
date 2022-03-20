@@ -38,7 +38,6 @@ export const UserStateReducer = createReducer(
     })),
 
     //REGISTER//
-
     on( register, ( state: UserState, { credentials }) => ({
         ...state,
         loading : true
@@ -55,8 +54,7 @@ export const UserStateReducer = createReducer(
         error
     })),
 
-    //GET USER DATA
-
+    //GET USER DATA//
     on( getUserData, ( state: UserState, { id }) => ({
         ...state,
         loading : false,
@@ -75,7 +73,6 @@ export const UserStateReducer = createReducer(
     })),
 
     //SET USER DATA//
-
     on( setUserData, ( state: UserState, { user }) => ({
         ...state,
         loading : true,

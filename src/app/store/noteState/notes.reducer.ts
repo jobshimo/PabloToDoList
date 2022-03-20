@@ -70,12 +70,10 @@ export const NotesStateReducer = createReducer(
         error
     })),
 
-    //SEARCH FILTER NOTE
+    //SEARCH FILTER NOTE//
     on( searchFilterNote, ( state: NoteState, { filter } ) => ({
         ...state,
-        // loading: false,
         search : filter
-        
     })),
 );
 

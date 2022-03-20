@@ -85,7 +85,7 @@ export class NewNoteComponent implements OnInit, OnDestroy {
       confirmButtonText : `Sí, ${this.favorite? 'añadir!' : 'quitar!'}` ,
     }).then(( result ) => {
       if ( result.isConfirmed ) {
-        switch (true) {
+        switch ( true ) {
           case !this.user:
             this.addNoteFavLocalStorage();  
             break;
@@ -95,14 +95,14 @@ export class NewNoteComponent implements OnInit, OnDestroy {
             break;
         };
       } else if ( result.isDenied ) {
-        Swal.fire( 'Changes are not saved', '', 'info');
+        Swal.fire( 'Changes are not saved', '', 'info' );
       };
     }); 
   };
 
   //FUNCION PARA AÑADIR NOTA COMO FAVORITA EN FIREBASE//
   addNoteFavFirebase(){
-    let newNote: NotesModel = new Notes(this.title,this.text, this.id ? this.id : new Date().getTime().toString(), new Date(), '', [], this.owner, this.favorite);
+    let newNote: NotesModel = new Notes( this.title,this.text, this.id ? this.id : new Date().getTime().toString(), new Date(), '', [], this.owner, this.favorite );
     this.store.dispatch(setAllNotesData({ note:newNote }));
     this.store.dispatch( deleteNoteTemp() );  
   };
@@ -115,13 +115,13 @@ export class NewNoteComponent implements OnInit, OnDestroy {
       if ( note.favorite === false ) {
         note.favorite = true;
         note.favorite = this.favorite;
-      } else if (note.favorite === true){
+      } else if ( note.favorite === true ){
         note.favorite = false;
         note.favorite != this.favorite;
       }
     });
     localStorage.setItem( 'note', JSON.stringify( notesObject ) );
-    this.router.navigate(['/home']);
+    this.router.navigate( ['/home'] );
     this.store.dispatch( deleteNoteTemp() );
   };
 

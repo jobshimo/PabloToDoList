@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Credentials } from 'src/app/models/credentials.models';
 import { login } from 'src/app/auth/store/userState/user.actions';
 import { FirebaseService } from '../../services/firebase.service';
-import { MainState } from '../../main.reducer';
 import { UserState } from '../store/userState/user.state';
 
 @Component({
@@ -14,7 +13,7 @@ import { UserState } from '../store/userState/user.state';
 export class LoginComponent implements OnInit {
 
   public email   : string    = '';
-  public password: string = '';
+  public password: string    = '';
 
   constructor( private firebaseService: FirebaseService, 
                private store          : Store<UserState>) { }
