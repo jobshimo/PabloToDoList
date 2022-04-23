@@ -1,0 +1,82 @@
+.div-prSmall {
+  width: 100%;
+  height: calc(100vh - 164px);
+  border-bottom: dotted;
+}
+
+.div-prLarge {
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+
+.div-footer {
+  height: 70px;
+}
+
+.button-arrowUp {
+  position: absolute;
+  right: 5px;
+  bottom: 83px;
+}
+
+.button-arrowDown {
+  position: absolute;
+  right: 5px;
+  bottom: 30px;
+}
+
+.button-folder {
+  position: relative;
+  top: 32px;
+  right: -2px;
+}
+
+.button-starNoSelect {
+  width: 20px;
+  position: relative;
+  left: 140px;
+  top: 30px;
+  fill: black;
+}
+
+.button-starSelect {
+  width: 20px;
+  position: relative;
+  left: 140px;
+  top: 30px;
+  fill: yellow;
+}
+
+.button-info {
+  width: 20px;
+  position: relative;
+  left: 180px;
+  top: 30px;
+}
+
+.button-clock {
+  width: 20px;
+  position: relative;
+  left: 214px;
+  top: 32px;
+}
+
+.title {
+  border: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 22px;
+  font-weight: 900;
+  outline: none;
+  position: relative;
+  top: 10px;
+}
+
+.text-box {
+  border: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  outline: none;
+  position: relative;
+  top: 20px;
+}
+/*# sourceMappingURL=new-note.component.css.map */

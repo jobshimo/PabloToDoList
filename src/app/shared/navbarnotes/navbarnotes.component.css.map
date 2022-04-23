@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,UAAU,CAAC,cAAc,CAAA,AAAA,cAAC,AAAA,EAAgB;EACtC,GAAG,EAAE,IAAI;EACT,KAAK,EAAE,EAAE;EACT,IAAI,EAAE,IAAI;EACV,UAAU,EAAE,CAAC;EACb,YAAY,EAAE,QAAQ;EACtB,aAAa,EAAE,IAAI;EACnB,YAAY,EAAE,KAAK;EACnB,WAAW,EAAE,KAAK;EAClB,UAAU,EAAE,MAAM;EAClB,SAAS,EAAE,IAAI;EACf,gBAAgB,EAAE,wBAAwB;CAC7C",
+    "sources": [
+        "navbarnotes.component.scss"
+    ],
+    "names": [],
+    "file": "navbarnotes.component.css"
+}

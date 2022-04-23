@@ -18,13 +18,14 @@ import { MAIN_REDUCER } from './main.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/appState/app.effects';
+import { NotesEffects } from './store/noteState/notes.effects';
 //Firebase//
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { AppEffects } from './store/appState/app.effects';
-import { NotesEffects } from './store/noteState/notes.effects';
+//PIPE//
 import { FilterPipe } from './filter.pipe';
 
 

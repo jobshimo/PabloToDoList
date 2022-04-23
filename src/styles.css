@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(c:\Users\Usuario\OneDrive\Escritorio\aplicacion con ngrx\PabloToDoList\node_modules\bootstrap\dist\css\bootstrap.min.css);
+@import url(c:\Users\Usuario\OneDrive\Escritorio\aplicacion con ngrx\PabloToDoList\node_modules\animate.css\animate.css);
+.main-button {
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+}
+
+.nav-custom {
+  background-color: rgba(5, 131, 100, 0.274) !important;
+  height: 60px;
+}
+
+.btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=styles.css.map */

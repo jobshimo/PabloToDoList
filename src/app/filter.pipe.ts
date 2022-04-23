@@ -10,4 +10,5 @@ export class FilterPipe implements PipeTransform {
     if( !texto ) return notes;
     return notes.filter( note => note.text.toUpperCase().includes( texto.toUpperCase() ));
   };
+
 };

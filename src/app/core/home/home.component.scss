@@ -1,3 +1,5 @@
+$primary-color: green;
+
 .button-plus {
     position: absolute;
     right: 28px;
@@ -5,17 +7,59 @@
 }
 
 .create {
-    border: 2px solid;
+    border: 2px solid green;
     margin: 12px;
     width: 95%;
-    display: flex;
+    display: inline-flex;
     flex-direction: column-reverse;
     border-radius: 30px;
-    border-color: green;
     align-items: center;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: center;
+    font-family: sans-serif;
+    font-style: italic;
+    text-shadow: 1px 1px 2px black;
+    animation: blink 10s linear;
+}
+
+@keyframes blink {
+    0% {
+        border: 2px solid $primary-color;
+       
+   }
+   25%{
+       border: 2px solid yellowgreen;
+        
+   }
+   50% {
+       border: 2px solid yellow;
+       
+   }
+   100% {
+       border: 2px solid $primary-color;
+    }
+}
+
+.create:hover {
+    border: 2px solid lightblue;
+    cursor: pointer;
+    animation: note-hover 1s linear;
+}
+
+@keyframes note-hover {
+    0% {
+        transform: scale(1);    
+    }25%{
+        transform: scale(1.1);
+       
+    }
+    50% {
+        transform: scale(1.2);    
+    }
+    100% {
+        transform: scale(1);   
+    }
 }
 
 .form-control {
